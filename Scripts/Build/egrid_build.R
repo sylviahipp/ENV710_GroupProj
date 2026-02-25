@@ -1,0 +1,51 @@
+# Author: Sylvia Hipp
+# Purpose: Clean eGRID dataset for analysis with CVI data
+# Feb 25, 2026
+
+# Setup Environment -------------------------------------------------------
+
+library(tidyverse)
+library(readxl)
+library(here)
+
+# Read raw data -----------------------------------------------------------
+
+plnt23_raw <- read_excel(here("Data/Raw/egrid/egrid2023_data_rev2.xlsx"), 
+                         sheet = "PLNT23", skip=1)
+
+glimpse(plnt23_raw)
+
+# Process data ------------------------------------------------------------
+
+# Filter plants based on: 
+# Southeastern states (plus Texas)
+# Plants with Capacity Factor > 1% and Nameplate Capacity > 1 MW
+# Exclude plants where county info is missing
+
+southern_states <- c("FL", "GA", "AL", "MS", "LA", "AR", "TN", "NC", "SC", 
+                     "KY", "WV", "VA", "TX", "DC")
+cf_limit <- 0.01
+npcap_limit <- 1
+
+plnt23 <- plnt23_raw %>% 
+  filter(PSTATABB %in% southern_states, 
+         NAMEPCAP >= npcap_limit, 
+         CAPFAC >= cf_limit, 
+         !is.na(FIPSCNTY))
+
+counties_count <- plnt23 %>% 
+  group_by(PSTATABB, FIPSCNTY, CNTYNAME, PLFUELCT) %>% 
+  count() %>% 
+  ungroup() %>% 
+  pivot_wider(id_cols = c("PSTATABB", "FIPSCNTY", "CNTYNAME"), 
+              names_from = "PLFUELCT", 
+              values_from = "n") 
+  
+counties_mw <- plnt23 %>% 
+  group_by(PSTATABB, FIPSCNTY, CNTYNAME, PLFUELCT) %>% 
+  summarize(capacity = sum(NAMEPCAP)) %>% 
+  ungroup() %>% 
+  pivot_wider(id_cols = c("PSTATABB", "FIPSCNTY", "CNTYNAME"), 
+              names_from = "PLFUELCT", 
+              values_from = "capacity") 
+

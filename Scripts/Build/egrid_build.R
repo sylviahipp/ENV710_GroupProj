@@ -49,3 +49,20 @@ counties_mw <- plnt23 %>%
               names_from = "PLFUELCT", 
               values_from = "capacity") 
 
+counties_count$allFF <- rowSums(counties_count[c("GAS", "COAL", "OIL","OFSL")],
+                                na.rm = TRUE)
+counties_count$windsolar <- rowSums(counties_count[c("WIND", "SOLAR")],
+                                    na.rm = TRUE)
+
+counties_cat <- counties_count %>% 
+  mutate(Category = case_when(
+    allFF > 0 & windsolar > 0 ~ "Contains FF and solar/wind ", 
+    allFF > 0 ~ "Contains FF",
+    windsolar > 0 ~ "Contains solar/wind",
+    allFF == 0 & windsolar ==0 ~"Neither"
+  )) %>% 
+  select(PSTATABB,FIPSCNTY,CNTYNAME,Category)
+
+write.csv(counties_cat, "Data/Processed/counties_category.csv", row.names = FALSE)
+
+

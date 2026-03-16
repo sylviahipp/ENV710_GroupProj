@@ -39,6 +39,15 @@ counties_category <- read_csv(here("Data/Processed/counties_category.csv"))
 map_countycat <- left_join(SE_Counties, counties_category, by = c(
   "FIPSCNTY","PSTATABB"))
 
-ggplot()+
-  geom_sf(data = SE_Counties, aes(color = "Category))
-  
+map_cat<-ggplot()+
+  geom_sf(data = map_countycat, aes(fill = Category))+
+  ggtitle("Southeast US Counties by Plant Type")+
+  labs(caption = "Counties in the Southeastern United States categorized by the presence of 
+  power plants within county boundaries according to 2023 eGRID data.")
+
+ggsave(map_cat, 
+       filename = "Scripts/Analysis/Figures/map_categories.jpg",
+       height = 10,
+       width = 20,
+       units = "cm")  
+

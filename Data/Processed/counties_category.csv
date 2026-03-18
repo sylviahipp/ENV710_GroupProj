@@ -1,738 +1,738 @@
-"PSTATABB","FIPSCNTY","CNTYNAME","Category","FIPSTATE","FIPSCODE"
-"AL","015","Calhoun","Contains solar/wind","01",1015
-"AL","017","Chambers","Contains solar/wind","01",1017
-"AL","019","Cherokee","Neither","01",1019
-"AL","021","Chilton","Neither","01",1021
-"AL","023","Choctaw","Neither","01",1023
-"AL","025","Clarke","Neither","01",1025
-"AL","033","Colbert","Contains solar/wind","01",1033
-"AL","037","Coosa","Neither","01",1037
-"AL","039","Covington","Contains FF and solar/wind ","01",1039
-"AL","045","Dale","Contains solar/wind","01",1045
-"AL","047","Dallas","Contains FF","01",1047
-"AL","051","Elmore","Neither","01",1051
-"AL","053","Escambia","Neither","01",1053
-"AL","063","Greene","Contains FF","01",1063
-"AL","065","Hale","Neither","01",1065
-"AL","069","Houston","Neither","01",1069
-"AL","073","Jefferson","Contains FF","01",1073
-"AL","077","Lauderdale","Contains solar/wind","01",1077
-"AL","079","Lawrence","Neither","01",1079
-"AL","081","Lee","Contains FF","01",1081
-"AL","083","Limestone","Contains solar/wind","01",1083
-"AL","085","Lowndes","Contains FF","01",1085
-"AL","089","Madison","Contains solar/wind","01",1089
-"AL","091","Marengo","Neither","01",1091
-"AL","095","Marshall","Neither","01",1095
-"AL","097","Mobile","Contains FF","01",1097
-"AL","099","Monroe","Neither","01",1099
-"AL","101","Montgomery","Contains solar/wind","01",1101
-"AL","103","Morgan","Contains FF","01",1103
-"AL","111","Randolph","Neither","01",1111
-"AL","113","Russell","Neither","01",1113
-"AL","117","Shelby","Contains FF","01",1117
-"AL","121","Talladega","Contains FF","01",1121
-"AL","123","Tallapoosa","Contains FF","01",1123
-"AL","125","Tuscaloosa","Neither","01",1125
-"AL","127","Walker","Neither","01",1127
-"AL","129","Washington","Contains FF","01",1129
-"AL","131","Wilcox","Neither","01",1131
-"AR","001","Arkansas","Contains solar/wind","05",5001
-"AR","003","Ashley","Contains FF and solar/wind ","05",5003
-"AR","005","Baxter","Neither","05",5005
-"AR","007","Benton","Contains FF","05",5007
-"AR","013","Calhoun","Contains solar/wind","05",5013
-"AR","015","Carroll","Contains solar/wind","05",5015
-"AR","017","Chicot","Contains solar/wind","05",5017
-"AR","019","Clark","Neither","05",5019
-"AR","021","Clay","Contains solar/wind","05",5021
-"AR","023","Cleburne","Neither","05",5023
-"AR","029","Conway","Neither","05",5029
-"AR","031","Craighead","Contains FF and solar/wind ","05",5031
-"AR","033","Crawford","Neither","05",5033
-"AR","041","Desha","Neither","05",5041
-"AR","047","Franklin","Contains FF and solar/wind ","05",5047
-"AR","051","Garland","Contains solar/wind","05",5051
-"AR","055","Greene","Contains solar/wind","05",5055
-"AR","057","Hempstead","Contains FF","05",5057
-"AR","059","Hot Spring","Contains FF","05",5059
-"AR","063","Independence","Contains FF","05",5063
-"AR","067","Jackson","Contains solar/wind","05",5067
-"AR","069","Jefferson","Contains FF","05",5069
-"AR","071","Johnson","Contains solar/wind","05",5071
-"AR","079","Lincoln","Contains solar/wind","05",5079
-"AR","081","Little River","Neither","05",5081
-"AR","083","Logan","Contains solar/wind","05",5083
-"AR","089","Marion","Neither","05",5089
-"AR","093","Mississippi","Contains FF","05",5093
-"AR","103","Ouachita","Contains FF and solar/wind ","05",5103
-"AR","109","Pike","Neither","05",5109
-"AR","115","Pope","Neither","05",5115
-"AR","119","Pulaski","Contains FF","05",5119
-"AR","123","St Francis","Contains solar/wind","05",5123
-"AR","125","Saline","Contains solar/wind","05",5125
-"AR","137","Stone","Neither","05",5137
-"AR","139","Union","Contains FF","05",5139
-"AR","143","Washington","Contains FF and solar/wind ","05",5143
-"AR","145","White","Contains solar/wind","05",5145
-"DC","001","District of Columbia","Contains FF and solar/wind ","11",11001
-"FL","001","Alachua","Contains FF and solar/wind ","12",12001
-"FL","003","Baker","Contains solar/wind","12",12003
-"FL","005","Bay","Contains FF and solar/wind ","12",12005
-"FL","009","Brevard","Contains FF and solar/wind ","12",12009
-"FL","011","Broward","Contains FF and solar/wind ","12",12011
-"FL","013","Calhoun","Contains solar/wind","12",12013
-"FL","015","Charlotte","Contains solar/wind","12",12015
-"FL","017","Citrus","Contains FF and solar/wind ","12",12017
-"FL","019","Clay","Contains solar/wind","12",12019
-"FL","021","Collier","Contains solar/wind","12",12021
-"FL","023","Columbia","Contains solar/wind","12",12023
-"FL","027","DeSoto","Contains solar/wind","12",12027
-"FL","031","Duval","Contains FF and solar/wind ","12",12031
-"FL","033","Escambia","Contains FF and solar/wind ","12",12033
-"FL","039","Gadsden","Contains solar/wind","12",12039
-"FL","041","Gilchrist","Contains solar/wind","12",12041
-"FL","047","Hamilton","Contains solar/wind","12",12047
-"FL","049","Hardee","Contains FF and solar/wind ","12",12049
-"FL","051","Hendry","Contains solar/wind","12",12051
-"FL","053","Hernando","Neither","12",12053
-"FL","055","Highlands","Contains solar/wind","12",12055
-"FL","057","Hillsborough","Contains FF and solar/wind ","12",12057
-"FL","061","Indian River","Contains solar/wind","12",12061
-"FL","063","Jackson","Contains solar/wind","12",12063
-"FL","069","Lake","Contains FF","12",12069
-"FL","071","Lee","Contains FF","12",12071
-"FL","073","Leon","Contains FF and solar/wind ","12",12073
-"FL","075","Levy","Contains solar/wind","12",12075
-"FL","081","Manatee","Contains FF and solar/wind ","12",12081
-"FL","083","Marion","Neither","12",12083
-"FL","085","Martin","Contains FF and solar/wind ","12",12085
-"FL","086","Miami Dade","Contains solar/wind","12",12086
-"FL","089","Nassau","Contains FF and solar/wind ","12",12089
-"FL","091","Okaloosa","Contains solar/wind","12",12091
-"FL","093","Okeechobee","Contains FF and solar/wind ","12",12093
-"FL","095","Orange","Contains FF and solar/wind ","12",12095
-"FL","097","Osceola","Contains FF and solar/wind ","12",12097
-"FL","099","Palm Beach","Contains FF and solar/wind ","12",12099
-"FL","101","Pasco","Contains FF and solar/wind ","12",12101
-"FL","103","Pinellas","Contains FF and solar/wind ","12",12103
-"FL","105","Polk","Contains FF and solar/wind ","12",12105
-"FL","107","Putnam","Contains FF and solar/wind ","12",12107
-"FL","109","St Johns","Contains solar/wind","12",12109
-"FL","111","St Lucie","Contains FF and solar/wind ","12",12111
-"FL","113","Santa Rosa","Contains FF and solar/wind ","12",12113
-"FL","115","Sarasota","Neither","12",12115
-"FL","117","Seminole","Contains solar/wind","12",12117
-"FL","121","Suwannee","Contains FF and solar/wind ","12",12121
-"FL","123","Taylor","Contains solar/wind","12",12123
-"FL","125","Union","Contains solar/wind","12",12125
-"FL","127","Volusia","Contains FF and solar/wind ","12",12127
-"FL","129","Wakulla","Contains FF","12",12129
-"FL","131","Walton","Contains solar/wind","12",12131
-"FL","133","Washington","Contains solar/wind","12",12133
-"GA","001","Appling","Contains solar/wind","13",13001
-"GA","009","Baldwin","Neither","13",13009
-"GA","013","Barrow","Contains solar/wind","13",13013
-"GA","015","Bartow","Contains FF","13",13015
-"GA","021","Bibb","Contains solar/wind","13",13021
-"GA","023","Bleckley","Contains solar/wind","13",13023
-"GA","027","Brooks","Contains solar/wind","13",13027
-"GA","029","Bryan","Contains solar/wind","13",13029
-"GA","031","Bulloch","Contains solar/wind","13",13031
-"GA","033","Burke","Contains solar/wind","13",13033
-"GA","039","Camden","Contains solar/wind","13",13039
-"GA","043","Candler","Contains solar/wind","13",13043
-"GA","049","Charlton","Contains solar/wind","13",13049
-"GA","051","Chatham","Contains FF and solar/wind ","13",13051
-"GA","053","Chattahoochee","Contains solar/wind","13",13053
-"GA","059","Clarke","Neither","13",13059
-"GA","061","Clay","Contains solar/wind","13",13061
-"GA","067","Cobb","Contains FF and solar/wind ","13",13067
-"GA","071","Colquitt","Contains solar/wind","13",13071
-"GA","073","Columbia","Contains solar/wind","13",13073
-"GA","077","Coweta","Contains FF","13",13077
-"GA","087","Decatur","Contains solar/wind","13",13087
-"GA","095","Dougherty","Contains solar/wind","13",13095
-"GA","097","Douglas","Contains solar/wind","13",13097
-"GA","099","Early","Contains solar/wind","13",13099
-"GA","103","Effingham","Contains FF and solar/wind ","13",13103
-"GA","105","Elbert","Contains solar/wind","13",13105
-"GA","107","Emanuel","Contains solar/wind","13",13107
-"GA","111","Fannin","Neither","13",13111
-"GA","115","Floyd","Contains FF","13",13115
-"GA","117","Forsyth","Neither","13",13117
-"GA","119","Franklin","Contains solar/wind","13",13119
-"GA","121","Fulton","Contains FF and solar/wind ","13",13121
-"GA","127","Glynn","Contains solar/wind","13",13127
-"GA","131","Grady","Contains solar/wind","13",13131
-"GA","133","Greene","Contains solar/wind","13",13133
-"GA","135","Gwinnett","Neither","13",13135
-"GA","137","Habersham","Neither","13",13137
-"GA","141","Hancock","Neither","13",13141
-"GA","145","Harris","Contains solar/wind","13",13145
-"GA","147","Hart","Contains FF","13",13147
-"GA","149","Heard","Contains FF","13",13149
-"GA","153","Houston","Contains FF and solar/wind ","13",13153
-"GA","157","Jackson","Contains FF","13",13157
-"GA","159","Jasper","Neither","13",13159
-"GA","161","Jeff Davis","Contains solar/wind","13",13161
-"GA","163","Jefferson","Contains solar/wind","13",13163
-"GA","165","Jenkins","Contains solar/wind","13",13165
-"GA","171","Lamar","Neither","13",13171
-"GA","173","Lanier","Contains solar/wind","13",13173
-"GA","175","Laurens","Contains solar/wind","13",13175
-"GA","177","Lee","Contains solar/wind","13",13177
-"GA","179","Liberty","Contains solar/wind","13",13179
-"GA","185","Lowndes","Contains solar/wind","13",13185
-"GA","193","Macon","Neither","13",13193
-"GA","195","Madison","Contains solar/wind","13",13195
-"GA","199","Meriwether","Contains solar/wind","13",13199
-"GA","205","Mitchell","Contains FF and solar/wind ","13",13205
-"GA","207","Monroe","Contains FF","13",13207
-"GA","213","Murray","Contains FF and solar/wind ","13",13213
-"GA","215","Muscogee","Contains solar/wind","13",13215
-"GA","225","Peach","Contains solar/wind","13",13225
-"GA","233","Polk","Contains FF and solar/wind ","13",13233
-"GA","237","Putnam","Contains solar/wind","13",13237
-"GA","241","Rabun","Neither","13",13241
-"GA","243","Randolph","Contains solar/wind","13",13243
-"GA","245","Richmond","Contains solar/wind","13",13245
-"GA","253","Seminole","Contains solar/wind","13",13253
-"GA","255","Spalding","Neither","13",13255
-"GA","257","Stephens","Neither","13",13257
-"GA","259","Stewart","Contains solar/wind","13",13259
-"GA","261","Sumter","Contains solar/wind","13",13261
-"GA","263","Talbot","Contains FF","13",13263
-"GA","267","Tattnall","Contains solar/wind","13",13267
-"GA","269","Taylor","Contains solar/wind","13",13269
-"GA","271","Telfair","Contains solar/wind","13",13271
-"GA","273","Terrell","Contains solar/wind","13",13273
-"GA","275","Thomas","Contains solar/wind","13",13275
-"GA","277","Tift","Contains solar/wind","13",13277
-"GA","285","Troup","Contains solar/wind","13",13285
-"GA","289","Twiggs","Contains solar/wind","13",13289
-"GA","291","Union","Neither","13",13291
-"GA","293","Upson","Contains FF and solar/wind ","13",13293
-"GA","297","Walton","Contains FF and solar/wind ","13",13297
-"GA","299","Ware","Contains solar/wind","13",13299
-"GA","301","Warren","Contains solar/wind","13",13301
-"GA","303","Washington","Contains FF and solar/wind ","13",13303
-"GA","305","Wayne","Contains solar/wind","13",13305
-"GA","319","Wilkinson","Contains solar/wind","13",13319
-"GA","321","Worth","Neither","13",13321
-"KY","009","Barren","Neither","21",21009
-"KY","015","Boone","Contains FF and solar/wind ","21",21015
-"KY","023","Bracken","Neither","21",21023
-"KY","041","Carroll","Contains FF","21",21041
-"KY","049","Clark","Contains FF and solar/wind ","21",21049
-"KY","065","Estill","Neither","21",21065
-"KY","079","Garrard","Contains solar/wind","21",21079
-"KY","081","Grant","Contains solar/wind","21",21081
-"KY","089","Greenup","Neither","21",21089
-"KY","091","Hancock","Neither","21",21091
-"KY","093","Hardin","Neither","21",21093
-"KY","111","Jefferson","Contains FF","21",21111
-"KY","117","Kenton","Contains solar/wind","21",21117
-"KY","125","Laurel","Neither","21",21125
-"KY","127","Lawrence","Contains FF","21",21127
-"KY","139","Livingston","Neither","21",21139
-"KY","143","Lyon","Neither","21",21143
-"KY","145","McCracken","Contains FF","21",21145
-"KY","157","Marshall","Contains FF","21",21157
-"KY","161","Mason","Contains FF","21",21161
-"KY","167","Mercer","Contains FF","21",21167
-"KY","177","Muhlenberg","Contains FF","21",21177
-"KY","183","Ohio","Contains FF","21",21183
-"KY","191","Pendleton","Neither","21",21191
-"KY","199","Pulaski","Contains FF","21",21199
-"KY","205","Rowan","Neither","21",21205
-"KY","207","Russell","Neither","21",21207
-"KY","209","Scott","Neither","21",21209
-"KY","217","Taylor","Neither","21",21217
-"KY","223","Trimble","Contains FF","21",21223
-"KY","233","Webster","Contains FF","21",21233
-"LA","001","Acadia","Contains FF","22",22001
-"LA","005","Ascension","Contains FF","22",22005
-"LA","011","Beauregard","Neither","22",22011
-"LA","017","Caddo","Contains FF","22",22017
-"LA","019","Calcasieu","Contains FF","22",22019
-"LA","029","Concordia","Neither","22",22029
-"LA","031","DeSoto","Contains FF","22",22031
-"LA","033","East Baton Rouge","Contains FF","22",22033
-"LA","039","Evangeline","Contains FF","22",22039
-"LA","047","Iberville","Contains FF","22",22047
-"LA","049","Jackson","Neither","22",22049
-"LA","051","Jefferson","Contains FF","22",22051
-"LA","055","Lafayette","Contains FF","22",22055
-"LA","061","Lincoln","Contains FF","22",22061
-"LA","069","Natchitoches","Neither","22",22069
-"LA","071","Orleans","Contains FF and solar/wind ","22",22071
-"LA","073","Ouachita","Contains FF","22",22073
-"LA","075","Plaquemines","Contains FF","22",22075
-"LA","077","Pointe Coupee","Contains FF","22",22077
-"LA","079","Rapides","Contains FF","22",22079
-"LA","081","Red River","Neither","22",22081
-"LA","087","St Bernard","Neither","22",22087
-"LA","089","St Charles","Contains FF","22",22089
-"LA","093","St James","Contains FF and solar/wind ","22",22093
-"LA","101","St Mary","Contains FF","22",22101
-"LA","117","Washington","Contains FF and solar/wind ","22",22117
-"LA","121","West Baton Rouge","Contains FF and solar/wind ","22",22121
-"LA","125","West Feliciana","Neither","22",22125
-"MS","007","Attala","Contains FF","28",28007
-"MS","009","Benton","Contains FF","28",28009
-"MS","015","Carroll","Contains solar/wind","28",28015
-"MS","017","Chickasaw","Contains solar/wind","28",28017
-"MS","019","Choctaw","Contains FF","28",28019
-"MS","021","Claiborne","Neither","28",28021
-"MS","027","Coahoma","Contains FF","28",28027
-"MS","035","Forrest","Contains solar/wind","28",28035
-"MS","039","George","Contains FF","28",28039
-"MS","047","Harrison","Contains FF and solar/wind ","28",28047
-"MS","049","Hinds","Contains FF","28",28049
-"MS","059","Jackson","Contains FF","28",28059
-"MS","065","Jefferson Davis","Contains FF","28",28065
-"MS","067","Jones","Contains FF","28",28067
-"MS","069","Kemper","Contains FF","28",28069
-"MS","073","Lamar","Contains FF and solar/wind ","28",28073
-"MS","075","Lauderdale","Contains solar/wind","28",28075
-"MS","077","Lawrence","Neither","28",28077
-"MS","079","Leake","Contains solar/wind","28",28079
-"MS","087","Lowndes","Contains FF","28",28087
-"MS","093","Marshall","Contains solar/wind","28",28093
-"MS","107","Panola","Contains FF","28",28107
-"MS","111","Perry","Neither","28",28111
-"MS","121","Rankin","Contains solar/wind","28",28121
-"MS","129","Smith","Contains FF","28",28129
-"MS","133","Sunflower","Contains solar/wind","28",28133
-"MS","149","Warren","Contains FF","28",28149
-"MS","151","Washington","Contains FF","28",28151
-"MS","163","Yazoo","Contains FF","28",28163
-"NC","001","Alamance","Contains solar/wind","37",37001
-"NC","003","Alexander","Contains solar/wind","37",37003
-"NC","007","Anson","Contains FF and solar/wind ","37",37007
-"NC","013","Beaufort","Contains solar/wind","37",37013
-"NC","015","Bertie","Contains solar/wind","37",37015
-"NC","017","Bladen","Contains solar/wind","37",37017
-"NC","019","Brunswick","Contains solar/wind","37",37019
-"NC","021","Buncombe","Contains FF and solar/wind ","37",37021
-"NC","023","Burke","Contains solar/wind","37",37023
-"NC","025","Cabarrus","Contains solar/wind","37",37025
-"NC","027","Caldwell","Contains solar/wind","37",37027
-"NC","029","Camden","Contains solar/wind","37",37029
-"NC","033","Caswell","Contains solar/wind","37",37033
-"NC","035","Catawba","Contains FF and solar/wind ","37",37035
-"NC","037","Chatham","Contains solar/wind","37",37037
-"NC","039","Cherokee","Neither","37",37039
-"NC","041","Chowan","Contains solar/wind","37",37041
-"NC","043","Clay","Neither","37",37043
-"NC","045","Cleveland","Contains FF and solar/wind ","37",37045
-"NC","047","Columbus","Contains solar/wind","37",37047
-"NC","049","Craven","Contains solar/wind","37",37049
-"NC","051","Cumberland","Contains solar/wind","37",37051
-"NC","053","Currituck","Contains solar/wind","37",37053
-"NC","057","Davidson","Neither","37",37057
-"NC","059","Davie","Contains solar/wind","37",37059
-"NC","061","Duplin","Contains solar/wind","37",37061
-"NC","063","Durham","Contains solar/wind","37",37063
-"NC","065","Edgecombe","Contains solar/wind","37",37065
-"NC","067","Forsyth","Contains solar/wind","37",37067
-"NC","069","Franklin","Contains solar/wind","37",37069
-"NC","071","Gaston","Contains FF and solar/wind ","37",37071
-"NC","073","Gates","Contains solar/wind","37",37073
-"NC","075","Graham","Neither","37",37075
-"NC","077","Granville","Contains solar/wind","37",37077
-"NC","079","Greene","Contains solar/wind","37",37079
-"NC","081","Guilford","Contains solar/wind","37",37081
-"NC","083","Halifax","Contains solar/wind","37",37083
-"NC","085","Harnett","Contains solar/wind","37",37085
-"NC","087","Haywood","Contains FF and solar/wind ","37",37087
-"NC","089","Henderson","Contains solar/wind","37",37089
-"NC","091","Hertford","Contains solar/wind","37",37091
-"NC","093","Hoke","Contains solar/wind","37",37093
-"NC","095","Hyde","Contains solar/wind","37",37095
-"NC","097","Iredell","Contains solar/wind","37",37097
-"NC","099","Jackson","Neither","37",37099
-"NC","101","Johnston","Contains solar/wind","37",37101
-"NC","103","Jones","Contains solar/wind","37",37103
-"NC","105","Lee","Contains solar/wind","37",37105
-"NC","107","Lenoir","Contains FF and solar/wind ","37",37107
-"NC","109","Lincoln","Contains solar/wind","37",37109
-"NC","113","Macon","Neither","37",37113
-"NC","115","Madison","Contains solar/wind","37",37115
-"NC","117","Martin","Contains solar/wind","37",37117
-"NC","119","Mecklenburg","Contains solar/wind","37",37119
-"NC","123","Montgomery","Contains solar/wind","37",37123
-"NC","125","Moore","Contains solar/wind","37",37125
-"NC","127","Nash","Contains solar/wind","37",37127
-"NC","129","New Hanover","Contains FF and solar/wind ","37",37129
-"NC","131","Northampton","Contains solar/wind","37",37131
-"NC","133","Onslow","Contains solar/wind","37",37133
-"NC","135","Orange","Contains FF and solar/wind ","37",37135
-"NC","137","Pamlico","Contains solar/wind","37",37137
-"NC","139","Pasquotank","Contains solar/wind","37",37139
-"NC","141","Pender","Contains solar/wind","37",37141
-"NC","143","Perquimans","Contains solar/wind","37",37143
-"NC","145","Person","Contains FF and solar/wind ","37",37145
-"NC","147","Pitt","Contains solar/wind","37",37147
-"NC","149","Polk","Neither","37",37149
-"NC","151","Randolph","Contains solar/wind","37",37151
-"NC","153","Richmond","Contains FF and solar/wind ","37",37153
-"NC","155","Robeson","Contains solar/wind","37",37155
-"NC","157","Rockingham","Contains FF and solar/wind ","37",37157
-"NC","159","Rowan","Contains FF and solar/wind ","37",37159
-"NC","161","Rutherford","Contains solar/wind","37",37161
-"NC","163","Sampson","Contains solar/wind","37",37163
-"NC","165","Scotland","Contains solar/wind","37",37165
-"NC","167","Stanly","Contains solar/wind","37",37167
-"NC","169","Stokes","Contains FF and solar/wind ","37",37169
-"NC","171","Surry","Contains solar/wind","37",37171
-"NC","173","Swain","Neither","37",37173
-"NC","179","Union","Contains solar/wind","37",37179
-"NC","181","Vance","Contains solar/wind","37",37181
-"NC","183","Wake","Contains FF and solar/wind ","37",37183
-"NC","185","Warren","Contains solar/wind","37",37185
-"NC","187","Washington","Contains solar/wind","37",37187
-"NC","191","Wayne","Contains FF and solar/wind ","37",37191
-"NC","195","Wilson","Contains FF and solar/wind ","37",37195
-"NC","197","Yadkin","Contains solar/wind","37",37197
-"SC","003","Aiken","Contains FF and solar/wind ","45",45003
-"SC","005","Allendale","Contains solar/wind","45",45005
-"SC","007","Anderson","Contains FF and solar/wind ","45",45007
-"SC","009","Bamberg","Contains solar/wind","45",45009
-"SC","011","Barnwell","Contains solar/wind","45",45011
-"SC","013","Beaufort","Contains FF and solar/wind ","45",45013
-"SC","015","Berkeley","Contains FF and solar/wind ","45",45015
-"SC","017","Calhoun","Contains FF and solar/wind ","45",45017
-"SC","019","Charleston","Contains FF","45",45019
-"SC","021","Cherokee","Contains FF and solar/wind ","45",45021
-"SC","023","Chester","Neither","45",45023
-"SC","025","Chesterfield","Contains solar/wind","45",45025
-"SC","027","Clarendon","Contains solar/wind","45",45027
-"SC","029","Colleton","Contains solar/wind","45",45029
-"SC","031","Darlington","Contains solar/wind","45",45031
-"SC","033","Dillon","Contains solar/wind","45",45033
-"SC","035","Dorchester","Neither","45",45035
-"SC","039","Fairfield","Neither","45",45039
-"SC","041","Florence","Contains solar/wind","45",45041
-"SC","043","Georgetown","Contains FF","45",45043
-"SC","045","Greenville","Contains solar/wind","45",45045
-"SC","047","Greenwood","Contains solar/wind","45",45047
-"SC","049","Hampton","Contains solar/wind","45",45049
-"SC","051","Horry","Contains solar/wind","45",45051
-"SC","053","Jasper","Contains FF and solar/wind ","45",45053
-"SC","055","Kershaw","Neither","45",45055
-"SC","057","Lancaster","Contains solar/wind","45",45057
-"SC","061","Lee","Contains solar/wind","45",45061
-"SC","063","Lexington","Contains FF and solar/wind ","45",45063
-"SC","065","McCormick","Neither","45",45065
-"SC","067","Marion","Contains solar/wind","45",45067
-"SC","069","Marlboro","Contains solar/wind","45",45069
-"SC","071","Newberry","Contains solar/wind","45",45071
-"SC","073","Oconee","Contains FF","45",45073
-"SC","075","Orangeburg","Contains FF and solar/wind ","45",45075
-"SC","077","Pickens","Contains FF","45",45077
-"SC","079","Richland","Contains FF and solar/wind ","45",45079
-"SC","081","Saluda","Contains solar/wind","45",45081
-"SC","083","Spartanburg","Contains solar/wind","45",45083
-"SC","087","Union","Contains solar/wind","45",45087
-"SC","089","Williamsburg","Contains solar/wind","45",45089
-"SC","091","York","Neither","45",45091
-"TN","001","Anderson","Contains FF and solar/wind ","47",47001
-"TN","003","Bedford","Contains solar/wind","47",47003
-"TN","005","Benton","Neither","47",47005
-"TN","009","Blount","Neither","47",47009
-"TN","019","Carter","Neither","47",47019
-"TN","027","Clay","Neither","47",47027
-"TN","037","Davidson","Contains FF and solar/wind ","47",47037
-"TN","041","DeKalb","Neither","47",47041
-"TN","043","Dickson","Neither","47",47043
-"TN","047","Fayette","Contains solar/wind","47",47047
-"TN","051","Franklin","Neither","47",47051
-"TN","059","Greene","Contains solar/wind","47",47059
-"TN","065","Hamilton","Contains solar/wind","47",47065
-"TN","069","Hardeman","Contains solar/wind","47",47069
-"TN","071","Hardin","Neither","47",47071
-"TN","073","Hawkins","Contains FF","47",47073
-"TN","075","Haywood","Contains FF and solar/wind ","47",47075
-"TN","079","Henry","Contains solar/wind","47",47079
-"TN","085","Humphreys","Contains FF","47",47085
-"TN","089","Jefferson","Neither","47",47089
-"TN","093","Knox","Contains FF","47",47093
-"TN","103","Lincoln","Contains solar/wind","47",47103
-"TN","105","Loudon","Contains FF","47",47105
-"TN","109","McNairy","Contains solar/wind","47",47109
-"TN","113","Madison","Contains solar/wind","47",47113
-"TN","115","Marion","Neither","47",47115
-"TN","125","Montgomery","Neither","47",47125
-"TN","131","Obion","Contains solar/wind","47",47131
-"TN","139","Polk","Neither","47",47139
-"TN","143","Rhea","Neither","47",47143
-"TN","145","Roane","Contains FF","47",47145
-"TN","149","Rutherford","Contains FF","47",47149
-"TN","155","Sevier","Neither","47",47155
-"TN","157","Shelby","Contains FF and solar/wind ","47",47157
-"TN","159","Smith","Neither","47",47159
-"TN","161","Stewart","Contains FF","47",47161
-"TN","163","Sullivan","Contains FF","47",47163
-"TN","165","Sumner","Contains FF","47",47165
-"TN","177","Warren","Neither","47",47177
-"TN","179","Washington","Contains solar/wind","47",47179
-"TX","003","Andrews","Contains FF and solar/wind ","48",48003
-"TX","009","Archer","Contains solar/wind","48",48009
-"TX","013","Atascosa","Contains FF","48",48013
-"TX","015","Austin","Contains solar/wind","48",48015
-"TX","017","Bailey","Contains solar/wind","48",48017
-"TX","021","Bastrop","Contains FF","48",48021
-"TX","023","Baylor","Contains solar/wind","48",48023
-"TX","025","Bee","Contains solar/wind","48",48025
-"TX","027","Bell","Contains FF and solar/wind ","48",48027
-"TX","029","Bexar","Contains FF and solar/wind ","48",48029
-"TX","033","Borden","Contains solar/wind","48",48033
-"TX","035","Bosque","Contains FF and solar/wind ","48",48035
-"TX","039","Brazoria","Contains FF and solar/wind ","48",48039
-"TX","041","Brazos","Contains FF","48",48041
-"TX","043","Brewster","Contains solar/wind","48",48043
-"TX","045","Briscoe","Contains solar/wind","48",48045
-"TX","047","Brooks","Contains solar/wind","48",48047
-"TX","049","Brown","Contains solar/wind","48",48049
-"TX","053","Burnet","Neither","48",48053
-"TX","057","Calhoun","Contains FF","48",48057
-"TX","059","Callahan","Contains solar/wind","48",48059
-"TX","061","Cameron","Contains FF and solar/wind ","48",48061
-"TX","065","Carson","Contains solar/wind","48",48065
-"TX","067","Cass","Neither","48",48067
-"TX","069","Castro","Contains solar/wind","48",48069
-"TX","071","Chambers","Contains FF","48",48071
-"TX","073","Cherokee","Contains FF","48",48073
-"TX","075","Childress","Contains solar/wind","48",48075
-"TX","077","Clay","Contains solar/wind","48",48077
-"TX","079","Cochran","Contains solar/wind","48",48079
-"TX","081","Coke","Contains FF and solar/wind ","48",48081
-"TX","085","Collin","Contains FF and solar/wind ","48",48085
-"TX","089","Colorado","Contains FF","48",48089
-"TX","091","Comal","Neither","48",48091
-"TX","093","Comanche","Contains solar/wind","48",48093
-"TX","095","Concho","Contains solar/wind","48",48095
-"TX","097","Cooke","Contains solar/wind","48",48097
-"TX","103","Crane","Contains solar/wind","48",48103
-"TX","105","Crockett","Contains solar/wind","48",48105
-"TX","107","Crosby","Contains solar/wind","48",48107
-"TX","109","Culberson","Contains solar/wind","48",48109
-"TX","113","Dallas","Contains FF and solar/wind ","48",48113
-"TX","115","Dawson","Contains solar/wind","48",48115
-"TX","117","Deaf Smith","Contains solar/wind","48",48117
-"TX","121","Denton","Contains FF and solar/wind ","48",48121
-"TX","125","Dickens","Contains solar/wind","48",48125
-"TX","127","Dimmit","Contains solar/wind","48",48127
-"TX","129","Donley","Contains solar/wind","48",48129
-"TX","135","Ector","Contains FF and solar/wind ","48",48135
-"TX","139","Ellis","Contains FF and solar/wind ","48",48139
-"TX","141","El Paso","Contains FF and solar/wind ","48",48141
-"TX","143","Erath","Contains solar/wind","48",48143
-"TX","147","Fannin","Contains solar/wind","48",48147
-"TX","149","Fayette","Contains FF","48",48149
-"TX","151","Fisher","Contains solar/wind","48",48151
-"TX","153","Floyd","Contains solar/wind","48",48153
-"TX","155","Foard","Contains solar/wind","48",48155
-"TX","157","Fort Bend","Contains FF and solar/wind ","48",48157
-"TX","159","Franklin","Contains solar/wind","48",48159
-"TX","161","Freestone","Contains FF","48",48161
-"TX","163","Frio","Contains FF and solar/wind ","48",48163
-"TX","167","Galveston","Contains FF","48",48167
-"TX","173","Glasscock","Contains solar/wind","48",48173
-"TX","175","Goliad","Contains FF","48",48175
-"TX","181","Grayson","Contains FF and solar/wind ","48",48181
-"TX","183","Gregg","Contains FF","48",48183
-"TX","185","Grimes","Contains FF","48",48185
-"TX","187","Guadalupe","Contains FF and solar/wind ","48",48187
-"TX","189","Hale","Contains FF and solar/wind ","48",48189
-"TX","193","Hamilton","Contains solar/wind","48",48193
-"TX","195","Hansford","Contains solar/wind","48",48195
-"TX","197","Hardeman","Contains solar/wind","48",48197
-"TX","199","Hardin","Contains FF","48",48199
-"TX","201","Harris","Contains FF","48",48201
-"TX","203","Harrison","Contains FF","48",48203
-"TX","207","Haskell","Contains solar/wind","48",48207
-"TX","209","Hays","Contains FF","48",48209
-"TX","213","Henderson","Contains FF","48",48213
-"TX","215","Hidalgo","Contains FF and solar/wind ","48",48215
-"TX","217","Hill","Contains solar/wind","48",48217
-"TX","221","Hood","Contains FF","48",48221
-"TX","227","Howard","Contains FF and solar/wind ","48",48227
-"TX","231","Hunt","Contains FF and solar/wind ","48",48231
-"TX","233","Hutchinson","Contains FF","48",48233
-"TX","235","Irion","Contains solar/wind","48",48235
-"TX","237","Jack","Contains solar/wind","48",48237
-"TX","241","Jasper","Neither","48",48241
-"TX","245","Jefferson","Contains FF","48",48245
-"TX","247","Jim Hogg","Contains solar/wind","48",48247
-"TX","249","Jim Wells","Contains FF","48",48249
-"TX","251","Johnson","Contains FF","48",48251
-"TX","253","Jones","Contains FF and solar/wind ","48",48253
-"TX","255","Karnes","Contains solar/wind","48",48255
-"TX","257","Kaufman","Contains FF and solar/wind ","48",48257
-"TX","261","Kenedy","Contains solar/wind","48",48261
-"TX","263","Kent","Contains solar/wind","48",48263
-"TX","271","Kinney","Contains solar/wind","48",48271
-"TX","275","Knox","Contains solar/wind","48",48275
-"TX","277","Lamar","Contains FF and solar/wind ","48",48277
-"TX","279","Lamb","Contains FF","48",48279
-"TX","293","Limestone","Contains FF and solar/wind ","48",48293
-"TX","299","Llano","Contains FF","48",48299
-"TX","303","Lubbock","Contains FF and solar/wind ","48",48303
-"TX","305","Lynn","Contains solar/wind","48",48305
-"TX","307","McCulloch","Contains solar/wind","48",48307
-"TX","309","McLennan","Contains FF and solar/wind ","48",48309
-"TX","315","Marion","Contains FF","48",48315
-"TX","317","Martin","Contains solar/wind","48",48317
-"TX","321","Matagorda","Contains FF and solar/wind ","48",48321
-"TX","323","Maverick","Contains FF","48",48323
-"TX","327","Menard","Contains solar/wind","48",48327
-"TX","333","Mills","Contains solar/wind","48",48333
-"TX","335","Mitchell","Contains FF and solar/wind ","48",48335
-"TX","339","Montgomery","Contains FF","48",48339
-"TX","341","Moore","Contains solar/wind","48",48341
-"TX","347","Nacogdoches","Neither","48",48347
-"TX","349","Navarro","Contains FF and solar/wind ","48",48349
-"TX","351","Newton","Contains FF","48",48351
-"TX","353","Nolan","Contains solar/wind","48",48353
-"TX","355","Nueces","Contains FF and solar/wind ","48",48355
-"TX","357","Ochiltree","Contains solar/wind","48",48357
-"TX","359","Oldham","Contains solar/wind","48",48359
-"TX","361","Orange","Contains FF","48",48361
-"TX","363","Palo Pinto","Contains FF","48",48363
-"TX","367","Parker","Neither","48",48367
-"TX","369","Parmer","Contains solar/wind","48",48369
-"TX","371","Pecos","Contains FF and solar/wind ","48",48371
-"TX","373","Polk","Contains solar/wind","48",48373
-"TX","375","Potter","Contains FF","48",48375
-"TX","377","Presidio","Contains solar/wind","48",48377
-"TX","381","Randall","Contains solar/wind","48",48381
-"TX","383","Reagan","Contains solar/wind","48",48383
-"TX","385","Real","Contains solar/wind","48",48385
-"TX","389","Reeves","Contains solar/wind","48",48389
-"TX","391","Refugio","Contains solar/wind","48",48391
-"TX","393","Roberts","Contains solar/wind","48",48393
-"TX","395","Robertson","Contains FF","48",48395
-"TX","401","Rusk","Contains FF","48",48401
-"TX","407","San Jacinto","Contains FF","48",48407
-"TX","409","San Patricio","Contains FF and solar/wind ","48",48409
-"TX","413","Schleicher","Contains solar/wind","48",48413
-"TX","415","Scurry","Contains FF and solar/wind ","48",48415
-"TX","417","Shackelford","Contains solar/wind","48",48417
-"TX","421","Sherman","Contains solar/wind","48",48421
-"TX","425","Somervell","Neither","48",48425
-"TX","427","Starr","Contains solar/wind","48",48427
-"TX","431","Sterling","Contains solar/wind","48",48431
-"TX","439","Tarrant","Contains FF","48",48439
-"TX","441","Taylor","Contains FF and solar/wind ","48",48441
-"TX","447","Throckmorton","Contains solar/wind","48",48447
-"TX","449","Titus","Contains FF","48",48449
-"TX","451","Tom Green","Contains solar/wind","48",48451
-"TX","453","Travis","Contains FF and solar/wind ","48",48453
-"TX","459","Upshur","Contains solar/wind","48",48459
-"TX","461","Upton","Contains solar/wind","48",48461
-"TX","463","Uvalde","Contains solar/wind","48",48463
-"TX","465","Val Verde","Contains FF and solar/wind ","48",48465
-"TX","467","Van Zandt","Contains solar/wind","48",48467
-"TX","469","Victoria","Contains FF","48",48469
-"TX","475","Ward","Contains FF","48",48475
-"TX","479","Webb","Contains FF and solar/wind ","48",48479
-"TX","481","Wharton","Contains FF and solar/wind ","48",48481
-"TX","485","Wichita","Contains FF","48",48485
-"TX","487","Wilbarger","Contains solar/wind","48",48487
-"TX","489","Willacy","Contains solar/wind","48",48489
-"TX","491","Williamson","Contains FF and solar/wind ","48",48491
-"TX","493","Wilson","Contains solar/wind","48",48493
-"TX","495","Winkler","Contains solar/wind","48",48495
-"TX","497","Wise","Contains FF","48",48497
-"TX","501","Yoakum","Contains FF","48",48501
-"TX","503","Young","Contains FF and solar/wind ","48",48503
-"TX","505","Zapata","Contains solar/wind","48",48505
-"VA","001","Accomack","Contains solar/wind","51",51001
-"VA","005","Alleghany","Contains FF","51",51005
-"VA","007","Amelia","Contains FF","51",51007
-"VA","009","Amherst","Contains solar/wind","51",51009
-"VA","011","Appomattox","Contains solar/wind","51",51011
-"VA","019","Bedford","Contains FF and solar/wind ","51",51019
-"VA","025","Brunswick","Contains FF","51",51025
-"VA","027","Buchanan","Contains FF","51",51027
-"VA","029","Buckingham","Contains FF and solar/wind ","51",51029
-"VA","031","Campbell","Contains solar/wind","51",51031
-"VA","033","Caroline","Contains FF","51",51033
-"VA","035","Carroll","Neither","51",51035
-"VA","037","Charlotte","Contains solar/wind","51",51037
-"VA","041","Chesterfield","Contains FF and solar/wind ","51",51041
-"VA","043","Clarke","Contains solar/wind","51",51043
-"VA","057","Essex","Contains solar/wind","51",51057
-"VA","059","Fairfax","Neither","51",51059
-"VA","061","Fauquier","Contains FF and solar/wind ","51",51061
-"VA","065","Fluvanna","Contains FF and solar/wind ","51",51065
-"VA","069","Frederick","Contains FF and solar/wind ","51",51069
-"VA","071","Giles","Contains FF","51",51071
-"VA","073","Gloucester","Contains solar/wind","51",51073
-"VA","075","Goochland","Contains solar/wind","51",51075
-"VA","077","Grayson","Neither","51",51077
-"VA","081","Greensville","Contains FF and solar/wind ","51",51081
-"VA","083","Halifax","Contains FF and solar/wind ","51",51083
-"VA","085","Hanover","Contains FF and solar/wind ","51",51085
-"VA","087","Henrico","Contains FF and solar/wind ","51",51087
-"VA","089","Henry","Contains solar/wind","51",51089
-"VA","091","Highland","Contains FF","51",51091
-"VA","093","Isle of Wight","Contains solar/wind","51",51093
-"VA","097","King and Queen","Neither","51",51097
-"VA","099","King George","Neither","51",51099
-"VA","101","King William","Contains solar/wind","51",51101
-"VA","103","Lancaster","Contains solar/wind","51",51103
-"VA","107","Loudoun","Contains FF","51",51107
-"VA","109","Louisa","Contains FF and solar/wind ","51",51109
-"VA","117","Mecklenburg","Contains solar/wind","51",51117
-"VA","119","Middlesex","Contains solar/wind","51",51119
-"VA","121","Montgomery","Contains FF","51",51121
-"VA","127","New Kent","Contains solar/wind","51",51127
-"VA","131","Northampton","Contains FF and solar/wind ","51",51131
-"VA","139","Page","Neither","51",51139
-"VA","141","Patrick","Neither","51",51141
-"VA","143","Pittsylvania","Contains solar/wind","51",51143
-"VA","145","Powhatan","Contains solar/wind","51",51145
-"VA","149","Prince George","Contains FF and solar/wind ","51",51149
-"VA","153","Prince William","Contains FF and solar/wind ","51",51153
-"VA","155","Pulaski","Neither","51",51155
-"VA","159","Richmond","Contains solar/wind","51",51159
-"VA","161","Roanoke","Neither","51",51161
-"VA","165","Rockingham","Contains FF","51",51165
-"VA","167","Russell","Contains FF","51",51167
-"VA","171","Shenandoah","Contains solar/wind","51",51171
-"VA","175","Southampton","Contains FF and solar/wind ","51",51175
-"VA","177","Spotsylvania","Contains solar/wind","51",51177
-"VA","179","Stafford","Neither","51",51179
-"VA","181","Surry","Contains FF and solar/wind ","51",51181
-"VA","183","Sussex","Contains solar/wind","51",51183
-"VA","187","Warren","Contains FF and solar/wind ","51",51187
-"VA","191","Washington","Contains FF","51",51191
-"VA","193","Westmoreland","Contains solar/wind","51",51193
-"VA","195","Wise","Contains FF","51",51195
-"VA","197","Wythe","Contains solar/wind","51",51197
-"VA","810","Virginia Beach","Contains solar/wind","51",51810
-"WV","001","Barbour","Contains solar/wind","54",54001
-"WV","003","Berkeley","Neither","54",54003
-"WV","019","Fayette","Neither","54",54019
-"WV","023","Grant","Contains FF and solar/wind ","54",54023
-"WV","025","Greenbrier","Contains solar/wind","54",54025
-"WV","033","Harrison","Contains FF","54",54033
-"WV","037","Jefferson","Neither","54",54037
-"WV","039","Kanawha","Neither","54",54039
-"WV","049","Marion","Contains FF","54",54049
-"WV","051","Marshall","Contains FF","54",54051
-"WV","053","Mason","Contains FF","54",54053
-"WV","057","Mineral","Contains solar/wind","54",54057
-"WV","061","Monongalia","Contains FF","54",54061
-"WV","067","Nicholas","Neither","54",54067
-"WV","073","Pleasants","Contains FF","54",54073
-"WV","079","Putnam","Contains FF","54",54079
-"WV","081","Raleigh","Neither","54",54081
-"WV","093","Tucker","Contains solar/wind","54",54093
-"WV","099","Wayne","Contains FF","54",54099
-"WV","103","Wetzel","Neither","54",54103
-"WV","107","Wood","Neither","54",54107
+"FIPSCODE","PSTATABB","CNTYNAME","Category"
+1015,"AL","Calhoun","Contains solar/wind"
+1017,"AL","Chambers","Contains solar/wind"
+1019,"AL","Cherokee","Neither"
+1021,"AL","Chilton","Neither"
+1023,"AL","Choctaw","Neither"
+1025,"AL","Clarke","Neither"
+1033,"AL","Colbert","Contains solar/wind"
+1037,"AL","Coosa","Neither"
+1039,"AL","Covington","Contains FF and solar/wind "
+1045,"AL","Dale","Contains solar/wind"
+1047,"AL","Dallas","Contains FF"
+1051,"AL","Elmore","Neither"
+1053,"AL","Escambia","Neither"
+1063,"AL","Greene","Contains FF"
+1065,"AL","Hale","Neither"
+1069,"AL","Houston","Neither"
+1073,"AL","Jefferson","Contains FF"
+1077,"AL","Lauderdale","Contains solar/wind"
+1079,"AL","Lawrence","Neither"
+1081,"AL","Lee","Contains FF"
+1083,"AL","Limestone","Contains solar/wind"
+1085,"AL","Lowndes","Contains FF"
+1089,"AL","Madison","Contains solar/wind"
+1091,"AL","Marengo","Neither"
+1095,"AL","Marshall","Neither"
+1097,"AL","Mobile","Contains FF"
+1099,"AL","Monroe","Neither"
+1101,"AL","Montgomery","Contains solar/wind"
+1103,"AL","Morgan","Contains FF"
+1111,"AL","Randolph","Neither"
+1113,"AL","Russell","Neither"
+1117,"AL","Shelby","Contains FF"
+1121,"AL","Talladega","Contains FF"
+1123,"AL","Tallapoosa","Contains FF"
+1125,"AL","Tuscaloosa","Neither"
+1127,"AL","Walker","Neither"
+1129,"AL","Washington","Contains FF"
+1131,"AL","Wilcox","Neither"
+5001,"AR","Arkansas","Contains solar/wind"
+5003,"AR","Ashley","Contains FF and solar/wind "
+5005,"AR","Baxter","Neither"
+5007,"AR","Benton","Contains FF"
+5013,"AR","Calhoun","Contains solar/wind"
+5015,"AR","Carroll","Contains solar/wind"
+5017,"AR","Chicot","Contains solar/wind"
+5019,"AR","Clark","Neither"
+5021,"AR","Clay","Contains solar/wind"
+5023,"AR","Cleburne","Neither"
+5029,"AR","Conway","Neither"
+5031,"AR","Craighead","Contains FF and solar/wind "
+5033,"AR","Crawford","Neither"
+5041,"AR","Desha","Neither"
+5047,"AR","Franklin","Contains FF and solar/wind "
+5051,"AR","Garland","Contains solar/wind"
+5055,"AR","Greene","Contains solar/wind"
+5057,"AR","Hempstead","Contains FF"
+5059,"AR","Hot Spring","Contains FF"
+5063,"AR","Independence","Contains FF"
+5067,"AR","Jackson","Contains solar/wind"
+5069,"AR","Jefferson","Contains FF"
+5071,"AR","Johnson","Contains solar/wind"
+5079,"AR","Lincoln","Contains solar/wind"
+5081,"AR","Little River","Neither"
+5083,"AR","Logan","Contains solar/wind"
+5089,"AR","Marion","Neither"
+5093,"AR","Mississippi","Contains FF"
+5103,"AR","Ouachita","Contains FF and solar/wind "
+5109,"AR","Pike","Neither"
+5115,"AR","Pope","Neither"
+5119,"AR","Pulaski","Contains FF"
+5123,"AR","St Francis","Contains solar/wind"
+5125,"AR","Saline","Contains solar/wind"
+5137,"AR","Stone","Neither"
+5139,"AR","Union","Contains FF"
+5143,"AR","Washington","Contains FF and solar/wind "
+5145,"AR","White","Contains solar/wind"
+11001,"DC","District of Columbia","Contains FF and solar/wind "
+12001,"FL","Alachua","Contains FF and solar/wind "
+12003,"FL","Baker","Contains solar/wind"
+12005,"FL","Bay","Contains FF and solar/wind "
+12009,"FL","Brevard","Contains FF and solar/wind "
+12011,"FL","Broward","Contains FF and solar/wind "
+12013,"FL","Calhoun","Contains solar/wind"
+12015,"FL","Charlotte","Contains solar/wind"
+12017,"FL","Citrus","Contains FF and solar/wind "
+12019,"FL","Clay","Contains solar/wind"
+12021,"FL","Collier","Contains solar/wind"
+12023,"FL","Columbia","Contains solar/wind"
+12027,"FL","DeSoto","Contains solar/wind"
+12031,"FL","Duval","Contains FF and solar/wind "
+12033,"FL","Escambia","Contains FF and solar/wind "
+12039,"FL","Gadsden","Contains solar/wind"
+12041,"FL","Gilchrist","Contains solar/wind"
+12047,"FL","Hamilton","Contains solar/wind"
+12049,"FL","Hardee","Contains FF and solar/wind "
+12051,"FL","Hendry","Contains solar/wind"
+12053,"FL","Hernando","Neither"
+12055,"FL","Highlands","Contains solar/wind"
+12057,"FL","Hillsborough","Contains FF and solar/wind "
+12061,"FL","Indian River","Contains solar/wind"
+12063,"FL","Jackson","Contains solar/wind"
+12069,"FL","Lake","Contains FF"
+12071,"FL","Lee","Contains FF"
+12073,"FL","Leon","Contains FF and solar/wind "
+12075,"FL","Levy","Contains solar/wind"
+12081,"FL","Manatee","Contains FF and solar/wind "
+12083,"FL","Marion","Neither"
+12085,"FL","Martin","Contains FF and solar/wind "
+12086,"FL","Miami Dade","Contains solar/wind"
+12089,"FL","Nassau","Contains FF and solar/wind "
+12091,"FL","Okaloosa","Contains solar/wind"
+12093,"FL","Okeechobee","Contains FF and solar/wind "
+12095,"FL","Orange","Contains FF and solar/wind "
+12097,"FL","Osceola","Contains FF and solar/wind "
+12099,"FL","Palm Beach","Contains FF and solar/wind "
+12101,"FL","Pasco","Contains FF and solar/wind "
+12103,"FL","Pinellas","Contains FF and solar/wind "
+12105,"FL","Polk","Contains FF and solar/wind "
+12107,"FL","Putnam","Contains FF and solar/wind "
+12109,"FL","St Johns","Contains solar/wind"
+12111,"FL","St Lucie","Contains FF and solar/wind "
+12113,"FL","Santa Rosa","Contains FF and solar/wind "
+12115,"FL","Sarasota","Neither"
+12117,"FL","Seminole","Contains solar/wind"
+12121,"FL","Suwannee","Contains FF and solar/wind "
+12123,"FL","Taylor","Contains solar/wind"
+12125,"FL","Union","Contains solar/wind"
+12127,"FL","Volusia","Contains FF and solar/wind "
+12129,"FL","Wakulla","Contains FF"
+12131,"FL","Walton","Contains solar/wind"
+12133,"FL","Washington","Contains solar/wind"
+13001,"GA","Appling","Contains solar/wind"
+13009,"GA","Baldwin","Neither"
+13013,"GA","Barrow","Contains solar/wind"
+13015,"GA","Bartow","Contains FF"
+13021,"GA","Bibb","Contains solar/wind"
+13023,"GA","Bleckley","Contains solar/wind"
+13027,"GA","Brooks","Contains solar/wind"
+13029,"GA","Bryan","Contains solar/wind"
+13031,"GA","Bulloch","Contains solar/wind"
+13033,"GA","Burke","Contains solar/wind"
+13039,"GA","Camden","Contains solar/wind"
+13043,"GA","Candler","Contains solar/wind"
+13049,"GA","Charlton","Contains solar/wind"
+13051,"GA","Chatham","Contains FF and solar/wind "
+13053,"GA","Chattahoochee","Contains solar/wind"
+13059,"GA","Clarke","Neither"
+13061,"GA","Clay","Contains solar/wind"
+13067,"GA","Cobb","Contains FF and solar/wind "
+13071,"GA","Colquitt","Contains solar/wind"
+13073,"GA","Columbia","Contains solar/wind"
+13077,"GA","Coweta","Contains FF"
+13087,"GA","Decatur","Contains solar/wind"
+13095,"GA","Dougherty","Contains solar/wind"
+13097,"GA","Douglas","Contains solar/wind"
+13099,"GA","Early","Contains solar/wind"
+13103,"GA","Effingham","Contains FF and solar/wind "
+13105,"GA","Elbert","Contains solar/wind"
+13107,"GA","Emanuel","Contains solar/wind"
+13111,"GA","Fannin","Neither"
+13115,"GA","Floyd","Contains FF"
+13117,"GA","Forsyth","Neither"
+13119,"GA","Franklin","Contains solar/wind"
+13121,"GA","Fulton","Contains FF and solar/wind "
+13127,"GA","Glynn","Contains solar/wind"
+13131,"GA","Grady","Contains solar/wind"
+13133,"GA","Greene","Contains solar/wind"
+13135,"GA","Gwinnett","Neither"
+13137,"GA","Habersham","Neither"
+13141,"GA","Hancock","Neither"
+13145,"GA","Harris","Contains solar/wind"
+13147,"GA","Hart","Contains FF"
+13149,"GA","Heard","Contains FF"
+13153,"GA","Houston","Contains FF and solar/wind "
+13157,"GA","Jackson","Contains FF"
+13159,"GA","Jasper","Neither"
+13161,"GA","Jeff Davis","Contains solar/wind"
+13163,"GA","Jefferson","Contains solar/wind"
+13165,"GA","Jenkins","Contains solar/wind"
+13171,"GA","Lamar","Neither"
+13173,"GA","Lanier","Contains solar/wind"
+13175,"GA","Laurens","Contains solar/wind"
+13177,"GA","Lee","Contains solar/wind"
+13179,"GA","Liberty","Contains solar/wind"
+13185,"GA","Lowndes","Contains solar/wind"
+13193,"GA","Macon","Neither"
+13195,"GA","Madison","Contains solar/wind"
+13199,"GA","Meriwether","Contains solar/wind"
+13205,"GA","Mitchell","Contains FF and solar/wind "
+13207,"GA","Monroe","Contains FF"
+13213,"GA","Murray","Contains FF and solar/wind "
+13215,"GA","Muscogee","Contains solar/wind"
+13225,"GA","Peach","Contains solar/wind"
+13233,"GA","Polk","Contains FF and solar/wind "
+13237,"GA","Putnam","Contains solar/wind"
+13241,"GA","Rabun","Neither"
+13243,"GA","Randolph","Contains solar/wind"
+13245,"GA","Richmond","Contains solar/wind"
+13253,"GA","Seminole","Contains solar/wind"
+13255,"GA","Spalding","Neither"
+13257,"GA","Stephens","Neither"
+13259,"GA","Stewart","Contains solar/wind"
+13261,"GA","Sumter","Contains solar/wind"
+13263,"GA","Talbot","Contains FF"
+13267,"GA","Tattnall","Contains solar/wind"
+13269,"GA","Taylor","Contains solar/wind"
+13271,"GA","Telfair","Contains solar/wind"
+13273,"GA","Terrell","Contains solar/wind"
+13275,"GA","Thomas","Contains solar/wind"
+13277,"GA","Tift","Contains solar/wind"
+13285,"GA","Troup","Contains solar/wind"
+13289,"GA","Twiggs","Contains solar/wind"
+13291,"GA","Union","Neither"
+13293,"GA","Upson","Contains FF and solar/wind "
+13297,"GA","Walton","Contains FF and solar/wind "
+13299,"GA","Ware","Contains solar/wind"
+13301,"GA","Warren","Contains solar/wind"
+13303,"GA","Washington","Contains FF and solar/wind "
+13305,"GA","Wayne","Contains solar/wind"
+13319,"GA","Wilkinson","Contains solar/wind"
+13321,"GA","Worth","Neither"
+21009,"KY","Barren","Neither"
+21015,"KY","Boone","Contains FF and solar/wind "
+21023,"KY","Bracken","Neither"
+21041,"KY","Carroll","Contains FF"
+21049,"KY","Clark","Contains FF and solar/wind "
+21065,"KY","Estill","Neither"
+21079,"KY","Garrard","Contains solar/wind"
+21081,"KY","Grant","Contains solar/wind"
+21089,"KY","Greenup","Neither"
+21091,"KY","Hancock","Neither"
+21093,"KY","Hardin","Neither"
+21111,"KY","Jefferson","Contains FF"
+21117,"KY","Kenton","Contains solar/wind"
+21125,"KY","Laurel","Neither"
+21127,"KY","Lawrence","Contains FF"
+21139,"KY","Livingston","Neither"
+21143,"KY","Lyon","Neither"
+21145,"KY","McCracken","Contains FF"
+21157,"KY","Marshall","Contains FF"
+21161,"KY","Mason","Contains FF"
+21167,"KY","Mercer","Contains FF"
+21177,"KY","Muhlenberg","Contains FF"
+21183,"KY","Ohio","Contains FF"
+21191,"KY","Pendleton","Neither"
+21199,"KY","Pulaski","Contains FF"
+21205,"KY","Rowan","Neither"
+21207,"KY","Russell","Neither"
+21209,"KY","Scott","Neither"
+21217,"KY","Taylor","Neither"
+21223,"KY","Trimble","Contains FF"
+21233,"KY","Webster","Contains FF"
+22001,"LA","Acadia","Contains FF"
+22005,"LA","Ascension","Contains FF"
+22011,"LA","Beauregard","Neither"
+22017,"LA","Caddo","Contains FF"
+22019,"LA","Calcasieu","Contains FF"
+22029,"LA","Concordia","Neither"
+22031,"LA","DeSoto","Contains FF"
+22033,"LA","East Baton Rouge","Contains FF"
+22039,"LA","Evangeline","Contains FF"
+22047,"LA","Iberville","Contains FF"
+22049,"LA","Jackson","Neither"
+22051,"LA","Jefferson","Contains FF"
+22055,"LA","Lafayette","Contains FF"
+22061,"LA","Lincoln","Contains FF"
+22069,"LA","Natchitoches","Neither"
+22071,"LA","Orleans","Contains FF and solar/wind "
+22073,"LA","Ouachita","Contains FF"
+22075,"LA","Plaquemines","Contains FF"
+22077,"LA","Pointe Coupee","Contains FF"
+22079,"LA","Rapides","Contains FF"
+22081,"LA","Red River","Neither"
+22087,"LA","St Bernard","Neither"
+22089,"LA","St Charles","Contains FF"
+22093,"LA","St James","Contains FF and solar/wind "
+22101,"LA","St Mary","Contains FF"
+22117,"LA","Washington","Contains FF and solar/wind "
+22121,"LA","West Baton Rouge","Contains FF and solar/wind "
+22125,"LA","West Feliciana","Neither"
+28007,"MS","Attala","Contains FF"
+28009,"MS","Benton","Contains FF"
+28015,"MS","Carroll","Contains solar/wind"
+28017,"MS","Chickasaw","Contains solar/wind"
+28019,"MS","Choctaw","Contains FF"
+28021,"MS","Claiborne","Neither"
+28027,"MS","Coahoma","Contains FF"
+28035,"MS","Forrest","Contains solar/wind"
+28039,"MS","George","Contains FF"
+28047,"MS","Harrison","Contains FF and solar/wind "
+28049,"MS","Hinds","Contains FF"
+28059,"MS","Jackson","Contains FF"
+28065,"MS","Jefferson Davis","Contains FF"
+28067,"MS","Jones","Contains FF"
+28069,"MS","Kemper","Contains FF"
+28073,"MS","Lamar","Contains FF and solar/wind "
+28075,"MS","Lauderdale","Contains solar/wind"
+28077,"MS","Lawrence","Neither"
+28079,"MS","Leake","Contains solar/wind"
+28087,"MS","Lowndes","Contains FF"
+28093,"MS","Marshall","Contains solar/wind"
+28107,"MS","Panola","Contains FF"
+28111,"MS","Perry","Neither"
+28121,"MS","Rankin","Contains solar/wind"
+28129,"MS","Smith","Contains FF"
+28133,"MS","Sunflower","Contains solar/wind"
+28149,"MS","Warren","Contains FF"
+28151,"MS","Washington","Contains FF"
+28163,"MS","Yazoo","Contains FF"
+37001,"NC","Alamance","Contains solar/wind"
+37003,"NC","Alexander","Contains solar/wind"
+37007,"NC","Anson","Contains FF and solar/wind "
+37013,"NC","Beaufort","Contains solar/wind"
+37015,"NC","Bertie","Contains solar/wind"
+37017,"NC","Bladen","Contains solar/wind"
+37019,"NC","Brunswick","Contains solar/wind"
+37021,"NC","Buncombe","Contains FF and solar/wind "
+37023,"NC","Burke","Contains solar/wind"
+37025,"NC","Cabarrus","Contains solar/wind"
+37027,"NC","Caldwell","Contains solar/wind"
+37029,"NC","Camden","Contains solar/wind"
+37033,"NC","Caswell","Contains solar/wind"
+37035,"NC","Catawba","Contains FF and solar/wind "
+37037,"NC","Chatham","Contains solar/wind"
+37039,"NC","Cherokee","Neither"
+37041,"NC","Chowan","Contains solar/wind"
+37043,"NC","Clay","Neither"
+37045,"NC","Cleveland","Contains FF and solar/wind "
+37047,"NC","Columbus","Contains solar/wind"
+37049,"NC","Craven","Contains solar/wind"
+37051,"NC","Cumberland","Contains solar/wind"
+37053,"NC","Currituck","Contains solar/wind"
+37057,"NC","Davidson","Neither"
+37059,"NC","Davie","Contains solar/wind"
+37061,"NC","Duplin","Contains solar/wind"
+37063,"NC","Durham","Contains solar/wind"
+37065,"NC","Edgecombe","Contains solar/wind"
+37067,"NC","Forsyth","Contains solar/wind"
+37069,"NC","Franklin","Contains solar/wind"
+37071,"NC","Gaston","Contains FF and solar/wind "
+37073,"NC","Gates","Contains solar/wind"
+37075,"NC","Graham","Neither"
+37077,"NC","Granville","Contains solar/wind"
+37079,"NC","Greene","Contains solar/wind"
+37081,"NC","Guilford","Contains solar/wind"
+37083,"NC","Halifax","Contains solar/wind"
+37085,"NC","Harnett","Contains solar/wind"
+37087,"NC","Haywood","Contains FF and solar/wind "
+37089,"NC","Henderson","Contains solar/wind"
+37091,"NC","Hertford","Contains solar/wind"
+37093,"NC","Hoke","Contains solar/wind"
+37095,"NC","Hyde","Contains solar/wind"
+37097,"NC","Iredell","Contains solar/wind"
+37099,"NC","Jackson","Neither"
+37101,"NC","Johnston","Contains solar/wind"
+37103,"NC","Jones","Contains solar/wind"
+37105,"NC","Lee","Contains solar/wind"
+37107,"NC","Lenoir","Contains FF and solar/wind "
+37109,"NC","Lincoln","Contains solar/wind"
+37113,"NC","Macon","Neither"
+37115,"NC","Madison","Contains solar/wind"
+37117,"NC","Martin","Contains solar/wind"
+37119,"NC","Mecklenburg","Contains solar/wind"
+37123,"NC","Montgomery","Contains solar/wind"
+37125,"NC","Moore","Contains solar/wind"
+37127,"NC","Nash","Contains solar/wind"
+37129,"NC","New Hanover","Contains FF and solar/wind "
+37131,"NC","Northampton","Contains solar/wind"
+37133,"NC","Onslow","Contains solar/wind"
+37135,"NC","Orange","Contains FF and solar/wind "
+37137,"NC","Pamlico","Contains solar/wind"
+37139,"NC","Pasquotank","Contains solar/wind"
+37141,"NC","Pender","Contains solar/wind"
+37143,"NC","Perquimans","Contains solar/wind"
+37145,"NC","Person","Contains FF and solar/wind "
+37147,"NC","Pitt","Contains solar/wind"
+37149,"NC","Polk","Neither"
+37151,"NC","Randolph","Contains solar/wind"
+37153,"NC","Richmond","Contains FF and solar/wind "
+37155,"NC","Robeson","Contains solar/wind"
+37157,"NC","Rockingham","Contains FF and solar/wind "
+37159,"NC","Rowan","Contains FF and solar/wind "
+37161,"NC","Rutherford","Contains solar/wind"
+37163,"NC","Sampson","Contains solar/wind"
+37165,"NC","Scotland","Contains solar/wind"
+37167,"NC","Stanly","Contains solar/wind"
+37169,"NC","Stokes","Contains FF and solar/wind "
+37171,"NC","Surry","Contains solar/wind"
+37173,"NC","Swain","Neither"
+37179,"NC","Union","Contains solar/wind"
+37181,"NC","Vance","Contains solar/wind"
+37183,"NC","Wake","Contains FF and solar/wind "
+37185,"NC","Warren","Contains solar/wind"
+37187,"NC","Washington","Contains solar/wind"
+37191,"NC","Wayne","Contains FF and solar/wind "
+37195,"NC","Wilson","Contains FF and solar/wind "
+37197,"NC","Yadkin","Contains solar/wind"
+45003,"SC","Aiken","Contains FF and solar/wind "
+45005,"SC","Allendale","Contains solar/wind"
+45007,"SC","Anderson","Contains FF and solar/wind "
+45009,"SC","Bamberg","Contains solar/wind"
+45011,"SC","Barnwell","Contains solar/wind"
+45013,"SC","Beaufort","Contains FF and solar/wind "
+45015,"SC","Berkeley","Contains FF and solar/wind "
+45017,"SC","Calhoun","Contains FF and solar/wind "
+45019,"SC","Charleston","Contains FF"
+45021,"SC","Cherokee","Contains FF and solar/wind "
+45023,"SC","Chester","Neither"
+45025,"SC","Chesterfield","Contains solar/wind"
+45027,"SC","Clarendon","Contains solar/wind"
+45029,"SC","Colleton","Contains solar/wind"
+45031,"SC","Darlington","Contains solar/wind"
+45033,"SC","Dillon","Contains solar/wind"
+45035,"SC","Dorchester","Neither"
+45039,"SC","Fairfield","Neither"
+45041,"SC","Florence","Contains solar/wind"
+45043,"SC","Georgetown","Contains FF"
+45045,"SC","Greenville","Contains solar/wind"
+45047,"SC","Greenwood","Contains solar/wind"
+45049,"SC","Hampton","Contains solar/wind"
+45051,"SC","Horry","Contains solar/wind"
+45053,"SC","Jasper","Contains FF and solar/wind "
+45055,"SC","Kershaw","Neither"
+45057,"SC","Lancaster","Contains solar/wind"
+45061,"SC","Lee","Contains solar/wind"
+45063,"SC","Lexington","Contains FF and solar/wind "
+45065,"SC","McCormick","Neither"
+45067,"SC","Marion","Contains solar/wind"
+45069,"SC","Marlboro","Contains solar/wind"
+45071,"SC","Newberry","Contains solar/wind"
+45073,"SC","Oconee","Contains FF"
+45075,"SC","Orangeburg","Contains FF and solar/wind "
+45077,"SC","Pickens","Contains FF"
+45079,"SC","Richland","Contains FF and solar/wind "
+45081,"SC","Saluda","Contains solar/wind"
+45083,"SC","Spartanburg","Contains solar/wind"
+45087,"SC","Union","Contains solar/wind"
+45089,"SC","Williamsburg","Contains solar/wind"
+45091,"SC","York","Neither"
+47001,"TN","Anderson","Contains FF and solar/wind "
+47003,"TN","Bedford","Contains solar/wind"
+47005,"TN","Benton","Neither"
+47009,"TN","Blount","Neither"
+47019,"TN","Carter","Neither"
+47027,"TN","Clay","Neither"
+47037,"TN","Davidson","Contains FF and solar/wind "
+47041,"TN","DeKalb","Neither"
+47043,"TN","Dickson","Neither"
+47047,"TN","Fayette","Contains solar/wind"
+47051,"TN","Franklin","Neither"
+47059,"TN","Greene","Contains solar/wind"
+47065,"TN","Hamilton","Contains solar/wind"
+47069,"TN","Hardeman","Contains solar/wind"
+47071,"TN","Hardin","Neither"
+47073,"TN","Hawkins","Contains FF"
+47075,"TN","Haywood","Contains FF and solar/wind "
+47079,"TN","Henry","Contains solar/wind"
+47085,"TN","Humphreys","Contains FF"
+47089,"TN","Jefferson","Neither"
+47093,"TN","Knox","Contains FF"
+47103,"TN","Lincoln","Contains solar/wind"
+47105,"TN","Loudon","Contains FF"
+47109,"TN","McNairy","Contains solar/wind"
+47113,"TN","Madison","Contains solar/wind"
+47115,"TN","Marion","Neither"
+47125,"TN","Montgomery","Neither"
+47131,"TN","Obion","Contains solar/wind"
+47139,"TN","Polk","Neither"
+47143,"TN","Rhea","Neither"
+47145,"TN","Roane","Contains FF"
+47149,"TN","Rutherford","Contains FF"
+47155,"TN","Sevier","Neither"
+47157,"TN","Shelby","Contains FF and solar/wind "
+47159,"TN","Smith","Neither"
+47161,"TN","Stewart","Contains FF"
+47163,"TN","Sullivan","Contains FF"
+47165,"TN","Sumner","Contains FF"
+47177,"TN","Warren","Neither"
+47179,"TN","Washington","Contains solar/wind"
+48003,"TX","Andrews","Contains FF and solar/wind "
+48009,"TX","Archer","Contains solar/wind"
+48013,"TX","Atascosa","Contains FF"
+48015,"TX","Austin","Contains solar/wind"
+48017,"TX","Bailey","Contains solar/wind"
+48021,"TX","Bastrop","Contains FF"
+48023,"TX","Baylor","Contains solar/wind"
+48025,"TX","Bee","Contains solar/wind"
+48027,"TX","Bell","Contains FF and solar/wind "
+48029,"TX","Bexar","Contains FF and solar/wind "
+48033,"TX","Borden","Contains solar/wind"
+48035,"TX","Bosque","Contains FF and solar/wind "
+48039,"TX","Brazoria","Contains FF and solar/wind "
+48041,"TX","Brazos","Contains FF"
+48043,"TX","Brewster","Contains solar/wind"
+48045,"TX","Briscoe","Contains solar/wind"
+48047,"TX","Brooks","Contains solar/wind"
+48049,"TX","Brown","Contains solar/wind"
+48053,"TX","Burnet","Neither"
+48057,"TX","Calhoun","Contains FF"
+48059,"TX","Callahan","Contains solar/wind"
+48061,"TX","Cameron","Contains FF and solar/wind "
+48065,"TX","Carson","Contains solar/wind"
+48067,"TX","Cass","Neither"
+48069,"TX","Castro","Contains solar/wind"
+48071,"TX","Chambers","Contains FF"
+48073,"TX","Cherokee","Contains FF"
+48075,"TX","Childress","Contains solar/wind"
+48077,"TX","Clay","Contains solar/wind"
+48079,"TX","Cochran","Contains solar/wind"
+48081,"TX","Coke","Contains FF and solar/wind "
+48085,"TX","Collin","Contains FF and solar/wind "
+48089,"TX","Colorado","Contains FF"
+48091,"TX","Comal","Neither"
+48093,"TX","Comanche","Contains solar/wind"
+48095,"TX","Concho","Contains solar/wind"
+48097,"TX","Cooke","Contains solar/wind"
+48103,"TX","Crane","Contains solar/wind"
+48105,"TX","Crockett","Contains solar/wind"
+48107,"TX","Crosby","Contains solar/wind"
+48109,"TX","Culberson","Contains solar/wind"
+48113,"TX","Dallas","Contains FF and solar/wind "
+48115,"TX","Dawson","Contains solar/wind"
+48117,"TX","Deaf Smith","Contains solar/wind"
+48121,"TX","Denton","Contains FF and solar/wind "
+48125,"TX","Dickens","Contains solar/wind"
+48127,"TX","Dimmit","Contains solar/wind"
+48129,"TX","Donley","Contains solar/wind"
+48135,"TX","Ector","Contains FF and solar/wind "
+48139,"TX","Ellis","Contains FF and solar/wind "
+48141,"TX","El Paso","Contains FF and solar/wind "
+48143,"TX","Erath","Contains solar/wind"
+48147,"TX","Fannin","Contains solar/wind"
+48149,"TX","Fayette","Contains FF"
+48151,"TX","Fisher","Contains solar/wind"
+48153,"TX","Floyd","Contains solar/wind"
+48155,"TX","Foard","Contains solar/wind"
+48157,"TX","Fort Bend","Contains FF and solar/wind "
+48159,"TX","Franklin","Contains solar/wind"
+48161,"TX","Freestone","Contains FF"
+48163,"TX","Frio","Contains FF and solar/wind "
+48167,"TX","Galveston","Contains FF"
+48173,"TX","Glasscock","Contains solar/wind"
+48175,"TX","Goliad","Contains FF"
+48181,"TX","Grayson","Contains FF and solar/wind "
+48183,"TX","Gregg","Contains FF"
+48185,"TX","Grimes","Contains FF"
+48187,"TX","Guadalupe","Contains FF and solar/wind "
+48189,"TX","Hale","Contains FF and solar/wind "
+48193,"TX","Hamilton","Contains solar/wind"
+48195,"TX","Hansford","Contains solar/wind"
+48197,"TX","Hardeman","Contains solar/wind"
+48199,"TX","Hardin","Contains FF"
+48201,"TX","Harris","Contains FF"
+48203,"TX","Harrison","Contains FF"
+48207,"TX","Haskell","Contains solar/wind"
+48209,"TX","Hays","Contains FF"
+48213,"TX","Henderson","Contains FF"
+48215,"TX","Hidalgo","Contains FF and solar/wind "
+48217,"TX","Hill","Contains solar/wind"
+48221,"TX","Hood","Contains FF"
+48227,"TX","Howard","Contains FF and solar/wind "
+48231,"TX","Hunt","Contains FF and solar/wind "
+48233,"TX","Hutchinson","Contains FF"
+48235,"TX","Irion","Contains solar/wind"
+48237,"TX","Jack","Contains solar/wind"
+48241,"TX","Jasper","Neither"
+48245,"TX","Jefferson","Contains FF"
+48247,"TX","Jim Hogg","Contains solar/wind"
+48249,"TX","Jim Wells","Contains FF"
+48251,"TX","Johnson","Contains FF"
+48253,"TX","Jones","Contains FF and solar/wind "
+48255,"TX","Karnes","Contains solar/wind"
+48257,"TX","Kaufman","Contains FF and solar/wind "
+48261,"TX","Kenedy","Contains solar/wind"
+48263,"TX","Kent","Contains solar/wind"
+48271,"TX","Kinney","Contains solar/wind"
+48275,"TX","Knox","Contains solar/wind"
+48277,"TX","Lamar","Contains FF and solar/wind "
+48279,"TX","Lamb","Contains FF"
+48293,"TX","Limestone","Contains FF and solar/wind "
+48299,"TX","Llano","Contains FF"
+48303,"TX","Lubbock","Contains FF and solar/wind "
+48305,"TX","Lynn","Contains solar/wind"
+48307,"TX","McCulloch","Contains solar/wind"
+48309,"TX","McLennan","Contains FF and solar/wind "
+48315,"TX","Marion","Contains FF"
+48317,"TX","Martin","Contains solar/wind"
+48321,"TX","Matagorda","Contains FF and solar/wind "
+48323,"TX","Maverick","Contains FF"
+48327,"TX","Menard","Contains solar/wind"
+48333,"TX","Mills","Contains solar/wind"
+48335,"TX","Mitchell","Contains FF and solar/wind "
+48339,"TX","Montgomery","Contains FF"
+48341,"TX","Moore","Contains solar/wind"
+48347,"TX","Nacogdoches","Neither"
+48349,"TX","Navarro","Contains FF and solar/wind "
+48351,"TX","Newton","Contains FF"
+48353,"TX","Nolan","Contains solar/wind"
+48355,"TX","Nueces","Contains FF and solar/wind "
+48357,"TX","Ochiltree","Contains solar/wind"
+48359,"TX","Oldham","Contains solar/wind"
+48361,"TX","Orange","Contains FF"
+48363,"TX","Palo Pinto","Contains FF"
+48367,"TX","Parker","Neither"
+48369,"TX","Parmer","Contains solar/wind"
+48371,"TX","Pecos","Contains FF and solar/wind "
+48373,"TX","Polk","Contains solar/wind"
+48375,"TX","Potter","Contains FF"
+48377,"TX","Presidio","Contains solar/wind"
+48381,"TX","Randall","Contains solar/wind"
+48383,"TX","Reagan","Contains solar/wind"
+48385,"TX","Real","Contains solar/wind"
+48389,"TX","Reeves","Contains solar/wind"
+48391,"TX","Refugio","Contains solar/wind"
+48393,"TX","Roberts","Contains solar/wind"
+48395,"TX","Robertson","Contains FF"
+48401,"TX","Rusk","Contains FF"
+48407,"TX","San Jacinto","Contains FF"
+48409,"TX","San Patricio","Contains FF and solar/wind "
+48413,"TX","Schleicher","Contains solar/wind"
+48415,"TX","Scurry","Contains FF and solar/wind "
+48417,"TX","Shackelford","Contains solar/wind"
+48421,"TX","Sherman","Contains solar/wind"
+48425,"TX","Somervell","Neither"
+48427,"TX","Starr","Contains solar/wind"
+48431,"TX","Sterling","Contains solar/wind"
+48439,"TX","Tarrant","Contains FF"
+48441,"TX","Taylor","Contains FF and solar/wind "
+48447,"TX","Throckmorton","Contains solar/wind"
+48449,"TX","Titus","Contains FF"
+48451,"TX","Tom Green","Contains solar/wind"
+48453,"TX","Travis","Contains FF and solar/wind "
+48459,"TX","Upshur","Contains solar/wind"
+48461,"TX","Upton","Contains solar/wind"
+48463,"TX","Uvalde","Contains solar/wind"
+48465,"TX","Val Verde","Contains FF and solar/wind "
+48467,"TX","Van Zandt","Contains solar/wind"
+48469,"TX","Victoria","Contains FF"
+48475,"TX","Ward","Contains FF"
+48479,"TX","Webb","Contains FF and solar/wind "
+48481,"TX","Wharton","Contains FF and solar/wind "
+48485,"TX","Wichita","Contains FF"
+48487,"TX","Wilbarger","Contains solar/wind"
+48489,"TX","Willacy","Contains solar/wind"
+48491,"TX","Williamson","Contains FF and solar/wind "
+48493,"TX","Wilson","Contains solar/wind"
+48495,"TX","Winkler","Contains solar/wind"
+48497,"TX","Wise","Contains FF"
+48501,"TX","Yoakum","Contains FF"
+48503,"TX","Young","Contains FF and solar/wind "
+48505,"TX","Zapata","Contains solar/wind"
+51001,"VA","Accomack","Contains solar/wind"
+51005,"VA","Alleghany","Contains FF"
+51007,"VA","Amelia","Contains FF"
+51009,"VA","Amherst","Contains solar/wind"
+51011,"VA","Appomattox","Contains solar/wind"
+51019,"VA","Bedford","Contains FF and solar/wind "
+51025,"VA","Brunswick","Contains FF"
+51027,"VA","Buchanan","Contains FF"
+51029,"VA","Buckingham","Contains FF and solar/wind "
+51031,"VA","Campbell","Contains solar/wind"
+51033,"VA","Caroline","Contains FF"
+51035,"VA","Carroll","Neither"
+51037,"VA","Charlotte","Contains solar/wind"
+51041,"VA","Chesterfield","Contains FF and solar/wind "
+51043,"VA","Clarke","Contains solar/wind"
+51057,"VA","Essex","Contains solar/wind"
+51059,"VA","Fairfax","Neither"
+51061,"VA","Fauquier","Contains FF and solar/wind "
+51065,"VA","Fluvanna","Contains FF and solar/wind "
+51069,"VA","Frederick","Contains FF and solar/wind "
+51071,"VA","Giles","Contains FF"
+51073,"VA","Gloucester","Contains solar/wind"
+51075,"VA","Goochland","Contains solar/wind"
+51077,"VA","Grayson","Neither"
+51081,"VA","Greensville","Contains FF and solar/wind "
+51083,"VA","Halifax","Contains FF and solar/wind "
+51085,"VA","Hanover","Contains FF and solar/wind "
+51087,"VA","Henrico","Contains FF and solar/wind "
+51089,"VA","Henry","Contains solar/wind"
+51091,"VA","Highland","Contains FF"
+51093,"VA","Isle of Wight","Contains solar/wind"
+51097,"VA","King and Queen","Neither"
+51099,"VA","King George","Neither"
+51101,"VA","King William","Contains solar/wind"
+51103,"VA","Lancaster","Contains solar/wind"
+51107,"VA","Loudoun","Contains FF"
+51109,"VA","Louisa","Contains FF and solar/wind "
+51117,"VA","Mecklenburg","Contains solar/wind"
+51119,"VA","Middlesex","Contains solar/wind"
+51121,"VA","Montgomery","Contains FF"
+51127,"VA","New Kent","Contains solar/wind"
+51131,"VA","Northampton","Contains FF and solar/wind "
+51139,"VA","Page","Neither"
+51141,"VA","Patrick","Neither"
+51143,"VA","Pittsylvania","Contains solar/wind"
+51145,"VA","Powhatan","Contains solar/wind"
+51149,"VA","Prince George","Contains FF and solar/wind "
+51153,"VA","Prince William","Contains FF and solar/wind "
+51155,"VA","Pulaski","Neither"
+51159,"VA","Richmond","Contains solar/wind"
+51161,"VA","Roanoke","Neither"
+51165,"VA","Rockingham","Contains FF"
+51167,"VA","Russell","Contains FF"
+51171,"VA","Shenandoah","Contains solar/wind"
+51175,"VA","Southampton","Contains FF and solar/wind "
+51177,"VA","Spotsylvania","Contains solar/wind"
+51179,"VA","Stafford","Neither"
+51181,"VA","Surry","Contains FF and solar/wind "
+51183,"VA","Sussex","Contains solar/wind"
+51187,"VA","Warren","Contains FF and solar/wind "
+51191,"VA","Washington","Contains FF"
+51193,"VA","Westmoreland","Contains solar/wind"
+51195,"VA","Wise","Contains FF"
+51197,"VA","Wythe","Contains solar/wind"
+51810,"VA","Virginia Beach","Contains solar/wind"
+54001,"WV","Barbour","Contains solar/wind"
+54003,"WV","Berkeley","Neither"
+54019,"WV","Fayette","Neither"
+54023,"WV","Grant","Contains FF and solar/wind "
+54025,"WV","Greenbrier","Contains solar/wind"
+54033,"WV","Harrison","Contains FF"
+54037,"WV","Jefferson","Neither"
+54039,"WV","Kanawha","Neither"
+54049,"WV","Marion","Contains FF"
+54051,"WV","Marshall","Contains FF"
+54053,"WV","Mason","Contains FF"
+54057,"WV","Mineral","Contains solar/wind"
+54061,"WV","Monongalia","Contains FF"
+54067,"WV","Nicholas","Neither"
+54073,"WV","Pleasants","Contains FF"
+54079,"WV","Putnam","Contains FF"
+54081,"WV","Raleigh","Neither"
+54093,"WV","Tucker","Contains solar/wind"
+54099,"WV","Wayne","Contains FF"
+54103,"WV","Wetzel","Neither"
+54107,"WV","Wood","Neither"

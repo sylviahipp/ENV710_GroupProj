@@ -21,7 +21,8 @@ SE_Counties <- st_read(here('Data/Raw/counties/cb_2018_us_county_20m.shp')) %>%
 counties_category <- read_csv(here("Data/Processed/counties_category.csv"))
 
 
-map_countycat <- left_join(SE_Counties, counties_category, by = "FIPSCODE")
+map_countycat <- left_join(SE_Counties, counties_category, by = "FIPSCODE") %>% 
+  mutate(Category = replace_when(x = Category, is.na(Category) ~ "Neither" ))
 
 map_cat<-ggplot()+
   geom_sf(data = map_countycat, aes(fill = Category))+

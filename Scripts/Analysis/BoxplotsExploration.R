@@ -18,7 +18,7 @@ cvi_data <- read_excel(
   sheet="Indicator Native Units",
   col_names=T) 
 
-# - SUBSET DATA ----------
+#-SUBSET CVI DATA ----------
 southern_states <- c("FL", "GA", "AL", "MS", "LA", "AR", "TN", "NC", "SC", 
                      "KY", "WV", "VA", "TX", "DC")
 
@@ -30,7 +30,7 @@ columnlist <- c("current_adult_asthma",
                 "fips_code",
                 "state")
 
-subsetcvi <- cvi_data %>% 
+aggregatecvi <- cvi_data %>% 
   janitor::clean_names() %>% 
   filter(state %in% southern_states) %>% 
   select(columnlist) %>% 
@@ -38,3 +38,7 @@ subsetcvi <- cvi_data %>%
   group_by(fips_county, state) %>%
   summarize(across(c("current_adult_asthma":"riverine_flooding_annualized_frequency"),
                    ~mean(.,na.rm=T)))
+
+write.csv(aggregatecvi, file = "Data/Raw/cvi/aggregatecvi.csv")
+
+#-Join CVI & eGRID classification-----------

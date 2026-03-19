@@ -56,6 +56,8 @@ write.csv(x = clean_joined, file = "Data/Processed/CleanedCVIandeGRID.csv")
 
 #-BOXPLOTS------------------
 
+clean_joined <- read.csv(file = "Data/Processed/CleanedCVIandeGRID.csv")
+
 adultasthma <- ggplot(data = clean_joined, aes(x = Category, y = current_adult_asthma, fill = Category))+
   geom_boxplot()+
   labs(title = "Adult Asthma Rates in Southeastern Counties \nby Power Plant Category",
@@ -64,22 +66,22 @@ adultasthma <- ggplot(data = clean_joined, aes(x = Category, y = current_adult_a
 railcrossings <- ggplot(data = clean_joined, aes(x = Category, y = rail_crossings, fill = Category))+
   geom_boxplot()+
   labs(title = "Count of Railroad Crossings in Southeastern Counties \nby Power Plant Category",
-       y = "Current Adult Asthma Rate")
+       y = "Count of Railroad Crossings")
 
 belowpoverty <- ggplot(data = clean_joined, aes(x = Category, y = below_poverty, fill = Category))+
   geom_boxplot()+
-  labs(title = "Count of Railroad Crossings in Southeastern Counties \nby Power Plant Category",
-       y = "Current Adult Asthma Rate")
+  labs(title = "Below Poverty Rate in Southeastern Counties \nby Power Plant Category",
+       y = "Rate of Residents Below Poverty")
 
 nohsdiploma <- ggplot(data = clean_joined, aes(x = Category, y = no_high_school_diploma, fill = Category))+
   geom_boxplot()+
   labs(title = "Rate of Residents w/o High School Diploma in Southeastern Counties \nby Power Plant Category",
-       y = "Current Adult Asthma Rate")
+       y = "Rate of No High School Diploma")
 
 riverineflooding <- ggplot(data = clean_joined, aes(x = Category, y = riverine_flooding_annualized_frequency, fill = Category))+
   geom_boxplot()+
   labs(title = "Annualized Frequency of Riverine Flooding in Southeastern Counties \nby Power Plant Category",
-       y = "Current Adult Asthma Rate")
+       y = "Riverine Flooding Frequency (Annualized)")
 
 ggsave(filename = "Scripts/Analysis/Figures/AdultAsthmaplot.jpg",plot = adultasthma, device = "jpeg")
 ggsave(filename = "Scripts/Analysis/Figures/RailCrossingsplot.jpg",plot = railcrossings, device = "jpeg")

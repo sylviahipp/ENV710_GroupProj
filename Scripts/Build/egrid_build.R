@@ -81,3 +81,4 @@ counties_cat <- counties_count %>%
 
 write.csv(counties_cat, "Data/Processed/counties_category.csv", row.names = FALSE)
 
+

@@ -61,8 +61,23 @@ counties_cat <- counties_count %>%
     windsolar > 0 ~ "Contains solar/wind",
     allFF == 0 & windsolar ==0 ~"Neither"
   )) %>% 
-  select(PSTATABB,FIPSCNTY,CNTYNAME,Category)
+  mutate(FIPSTATE = case_when(
+    PSTATABB == "FL" ~ "12",
+    PSTATABB == "GA" ~ "13",
+    PSTATABB == "AL" ~ "01",
+    PSTATABB == "MS" ~ "28",
+    PSTATABB == "LA" ~ "22",
+    PSTATABB == "AR" ~ "05",
+    PSTATABB == "TN" ~ "47",
+    PSTATABB == "NC" ~ "37",
+    PSTATABB == "SC" ~ "45",
+    PSTATABB == "KY" ~ "21",
+    PSTATABB == "WV" ~ "54",
+    PSTATABB == "VA" ~ "51",
+    PSTATABB == "TX" ~ "48",
+    PSTATABB == "DC" ~ "11")) %>% 
+  mutate(FIPSCODE = paste0(FIPSTATE,FIPSCNTY)) %>% 
+  select(FIPSCODE,PSTATABB,CNTYNAME,Category)
 
 write.csv(counties_cat, "Data/Processed/counties_category.csv", row.names = FALSE)
-
 

@@ -49,7 +49,7 @@ counties_mw <- plnt23 %>%
               names_from = "PLFUELCT", 
               values_from = "capacity") 
 
-counties_count$allFF <- rowSums(counties_count[c("GAS", "COAL", "OIL","OFSL")],
+counties_count$allFF <- rowSums(counties_count[c("GAS", "COAL", "OIL", "OFSL")],
                                 na.rm = TRUE)
 counties_count$windsolar <- rowSums(counties_count[c("WIND", "SOLAR")],
                                     na.rm = TRUE)

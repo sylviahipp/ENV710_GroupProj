@@ -61,27 +61,32 @@ clean_joined <- read.csv(file = "Data/Processed/CleanedCVIandeGRID.csv")
 adultasthma <- ggplot(data = clean_joined, aes(x = Category, y = current_adult_asthma, fill = Category))+
   geom_boxplot()+
   labs(title = "Adult Asthma Rates in Southeastern Counties \nby Power Plant Category",
-       y = "Current Adult Asthma Rate")
+       y = "Current Adult Asthma Rate")+
+  theme(axis.text.x=element_text(vjust=0.5,angle=45))
 
 railcrossings <- ggplot(data = clean_joined, aes(x = Category, y = rail_crossings, fill = Category))+
   geom_boxplot()+
   labs(title = "Count of Railroad Crossings in Southeastern Counties \nby Power Plant Category",
-       y = "Count of Railroad Crossings")
+       y = "Count of Railroad Crossings")+
+  theme(axis.text.x=element_text(vjust=0.5,angle=45))
 
 belowpoverty <- ggplot(data = clean_joined, aes(x = Category, y = below_poverty, fill = Category))+
   geom_boxplot()+
   labs(title = "Below Poverty Rate in Southeastern Counties \nby Power Plant Category",
-       y = "Rate of Residents Below Poverty")
+       y = "Rate of Residents Below Poverty")+
+  theme(axis.text.x=element_text(vjust=0.5,angle=45))
 
 nohsdiploma <- ggplot(data = clean_joined, aes(x = Category, y = no_high_school_diploma, fill = Category))+
   geom_boxplot()+
   labs(title = "Rate of Residents w/o High School Diploma in Southeastern Counties \nby Power Plant Category",
-       y = "Rate of No High School Diploma")
+       y = "Rate of No High School Diploma")+
+  theme(axis.text.x=element_text(vjust=0.5,angle=45))
 
 riverineflooding <- ggplot(data = clean_joined, aes(x = Category, y = riverine_flooding_annualized_frequency, fill = Category))+
   geom_boxplot()+
   labs(title = "Annualized Frequency of Riverine Flooding in Southeastern Counties \nby Power Plant Category",
-       y = "Riverine Flooding Frequency (Annualized)")
+       y = "Riverine Flooding Frequency (Annualized)")+
+  theme(axis.text.x=element_text(vjust=0.5,angle=45))
 
 ggsave(filename = "Scripts/Analysis/Figures/AdultAsthmaplot.jpg",plot = adultasthma, device = "jpeg")
 ggsave(filename = "Scripts/Analysis/Figures/RailCrossingsplot.jpg",plot = railcrossings, device = "jpeg")

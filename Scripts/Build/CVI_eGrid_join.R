@@ -20,4 +20,4 @@ cvi_egrid_join <- left_join(CVI,county_cat,by = "FIPSCODE") %>%
          "rail_crossings","below_poverty","no_high_school_diploma",
          "riverine_flooding_annualized_frequency")
 
-write.csv(CVI_county_join, "Data/Processed/cvi_egrid_join.csv", row.names = FALSE)
+write.csv(cvi_egrid_join, "Data/Processed/cvi_egrid_join.csv", row.names = FALSE)

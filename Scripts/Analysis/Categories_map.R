@@ -18,17 +18,25 @@ SE_Counties <- st_read(here('Data/Raw/counties/cb_2018_us_county_20m.shp')) %>%
   filter(STATEFP %in% southern_fps) %>% 
   mutate(FIPSCODE = as.character(GEOID))
     
-counties_category <- read_csv(here("Data/Processed/counties_category.csv"))
+counties_category <- read_csv(here("Data/Processed/counties_category.csv")) 
 
 
 map_countycat <- left_join(SE_Counties, counties_category, by = "FIPSCODE") %>% 
-  mutate(Category = replace_when(x = Category, is.na(Category) ~ "Neither" ))
+  mutate(Category = replace_when(x = Category, is.na(Category) ~ "No plant" ))
 
 map_cat<-ggplot()+
   geom_sf(data = map_countycat, aes(fill = Category))+
   ggtitle("Southeast US Counties by Plant Type")+
+  scale_fill_manual(
+    values = c("Contains FF" = "darkred",
+               "Contains FF and solar/wind" = "darkgoldenrod1",
+               "Contains solar/wind" = "chartreuse4",
+               "No plant" = "gray",
+               "Other plant" = "cadetblue3"))+
   labs(caption = "Counties in the Southeastern United States categorized by the presence of 
   power plants within county boundaries according to 2023 eGRID data.")
+
+map_cat
 
 ggsave(map_cat, 
        filename = "Scripts/Analysis/Figures/map_categories.jpg",

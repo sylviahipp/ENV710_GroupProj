@@ -18,6 +18,9 @@ cvi_egrid_join <- left_join(CVI,county_cat,by = "FIPSCODE") %>%
   mutate(Category = replace_na(Category, "No plant")) %>% 
   select("state","FIPSCODE","Category","population","current_adult_asthma",
          "rail_crossings","below_poverty","no_high_school_diploma",
-         "riverine_flooding_annualized_frequency")
+         "riverine_flooding_annualized_frequency") %>% 
+  filter(Category != "Other plant")
+
+cvi_egrid_join
 
 write.csv(cvi_egrid_join, "Data/Processed/cvi_egrid_join.csv", row.names = FALSE)

@@ -33,7 +33,7 @@ southern_states <- c("FL", "GA", "AL", "MS", "LA", "AR", "TN", "NC", "SC",
 columnlist <- c("fips_code",
                 "state", 
                 "current_adult_asthma",
-                "rail_crossings",
+                #"rail_crossings",
                 "below_poverty",
                 "no_high_school_diploma",
                 "riverine_flooding_annualized_frequency") 
@@ -90,12 +90,9 @@ cvi_county <- cvi_data_pop %>%
   inner_join(county_pop, by = c("fips_county" = "fips_code"))
 
 
-
-
-
 # Investigate Variable Distribution ---------------------------------------
 
-metrics <- names(cvi_county)[c(3:7,9)]
+metrics <- cvi_county %>% select(-c(state:fips_county, county_name)) %>% names()
 
 # visualize distributions
 plot_distrib <- function(metric, county_df){
@@ -137,7 +134,8 @@ cvi_county_final <- left_join(
   cvi_county_log_adj, 
   by = "fips_county", 
   suffix = c("", "_log")
-)
+) %>% 
+  relocate(county_name, .after = "fips_county")
 
 
 # check whether original or log-transformed variable is better
@@ -154,14 +152,15 @@ for (metric in metrics){
   }
   print(c(metric, orig_skew, log_skew))
 }
-best_col
+#best_col
 
-#write_rds(cvi_county_final, "Data/Processed/cvi_data_by_county.rds")
+cvi_county_best_cols <- cvi_county_final %>% 
+  select(state:county_name, all_of(best_col))
 
-
-## DROP RAIL CROSSINGs
+write_rds(cvi_county_final, "Data/Processed/cvi_data_by_county.rds")
+write_rds(cvi_county_best_cols, "Data/Processed/cvi_data_by_county_best_cols.rds")
 
 # Visualization -----------------------------------------------------------
 
-ggplot(cvi_county_final) + 
-  geom_boxplot(aes)
+# ggplot(cvi_county_final) + 
+#   geom_boxplot(aes)

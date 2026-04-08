@@ -23,7 +23,7 @@ glimpse(plnt23_raw)
 # Exclude plants where county info is missing
 
 southern_states <- c("FL", "GA", "AL", "MS", "LA", "AR", "TN", "NC", "SC", 
-                     "KY", "WV", "VA", "TX", "DC")
+                     "KY", "WV", "VA", "TX")
 cf_limit <- 0.01
 npcap_limit <- 1
 

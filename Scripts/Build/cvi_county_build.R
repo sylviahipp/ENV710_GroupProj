@@ -89,7 +89,7 @@ cvi_county <- cvi_data_pop %>%
 # exclude counties without population data in the census
   inner_join(county_pop, by = c("fips_county" = "fips_code"))
 
-#write_rds(cvi_county, "Data/Processed/cvi_data_by_county.rds")
+
 
 
 
@@ -104,8 +104,8 @@ plot_distrib <- function(metric, county_df){
   
   metric_data <- df %>% select(all_of(metric)) %>% pull()
   
-  skewness <- skewness(metric_data, na.rm = TRUE) 
-  kurtosis <- kurtosis(metric_data, na.rm = TRUE)
+  skewness <- skewness(metric_data %>% subset(.!=-Inf), na.rm = TRUE)
+  kurtosis <- kurtosis(metric_data %>% subset(.!=-Inf), na.rm = TRUE) 
   
   plot <- ggplot(df, aes(x = !!sym(metric))) + 
     geom_histogram() + 
@@ -137,5 +137,7 @@ cvi_county_final <- left_join(
   by = "fips_county", 
   suffix = c("", "_log")
 )
+
+write_rds(cvi_county_final, "Data/Processed/cvi_data_by_county.rds")
 
 

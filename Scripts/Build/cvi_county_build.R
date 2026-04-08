@@ -9,7 +9,21 @@ library(readxl)
 library(here)
 library(tidycensus)
 library(janitor)
+library(glue)
+library(moments)
 
+# Below poverty: percentile ranking
+
+# adult asthma: Age-adjusted prevalence of adults who answer “yes” both to both 
+#               of the following questions: “Have you ever been told by a doctor, 
+#               nurse, or other health professional that you have asthma?” and the 
+#               question “Do you still have asthma?", 2021.
+
+# No High School diploma: percentile ranking
+
+# Riverine Flooding: annualized frequency
+
+# Rail crossings: Proximity to an at-grade railroad crossing  (5km centroid radius), 2021.
 
 # Load CVI Data -----------------------------------------------------------
 
@@ -67,10 +81,61 @@ cvi_data_pop <- cvi_data %>%
 cvi_county <- cvi_data_pop %>% 
   mutate(fips_county = str_extract(fips_code,"^\\d{5}")) %>% 
   group_by(state, fips_county) %>% 
- # summarize tract data to weighted average, weighted by population 
+# summarize tract data to weighted average, weighted by population 
   summarize(across(c("current_adult_asthma":"riverine_flooding_annualized_frequency"),
                    ~sum(population*., na.rm = TRUE)/sum(population, na.rm = TRUE))) %>% 
   ungroup() %>% 
- # add on county-level population data
-  left_join(county_pop, by = c("fips_county" = "fips_code"))
+# add on county-level population data
+# exclude counties without population data in the census
+  inner_join(county_pop, by = c("fips_county" = "fips_code"))
+
+#write_rds(cvi_county, "Data/Processed/cvi_data_by_county.rds")
+
+
+
+# Investigate Variable Distribution ---------------------------------------
+
+metrics <- names(cvi_county)[c(3:7,9)]
+
+# visualize distributions
+plot_distrib <- function(metric, county_df){
+  df <- county_df %>% 
+    select(fips_county, all_of(metric))
+  
+  metric_data <- df %>% select(all_of(metric)) %>% pull()
+  
+  skewness <- skewness(metric_data, na.rm = TRUE) 
+  kurtosis <- kurtosis(metric_data, na.rm = TRUE)
+  
+  plot <- ggplot(df, aes(x = !!sym(metric))) + 
+    geom_histogram() + 
+    labs(caption = glue("Skewness: {skewness}\nKurtosis: {kurtosis}"))
+  
+  return(plot)
+}
+
+plots <- map(metrics, plot_distrib, cvi_county)
+names(plots) <- metrics
+
+plots
+
+skewed_vars <- c("rail_crossings", "below_poverty", "no_high_school_diploma", 
+                 "riverine_flooding_annualized_frequency", "population")
+  
+# Log Adjust Variables ----------------------------------------------------
+
+cvi_county_log_adj <- cvi_county %>%
+  select(fips_county, all_of(skewed_vars)) %>% 
+  mutate(across(c(-fips_county), log))
+
+plots_log <- map(skewed_vars, plot_distrib, cvi_county_log_adj)
+plots_log
+
+cvi_county_final <- left_join(
+  cvi_county, 
+  cvi_county_log_adj, 
+  by = "fips_county", 
+  suffix = c("", "_log")
+)
+
 

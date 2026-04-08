@@ -59,7 +59,7 @@ counties_cat <- counties_count %>%
     allFF > 0 & windsolar > 0 ~ "Contains FF and solar/wind ", 
     allFF > 0 ~ "Contains FF",
     windsolar > 0 ~ "Contains solar/wind",
-    allFF == 0 & windsolar ==0 ~"Neither"
+    allFF == 0 & windsolar ==0 ~"Other plant"
   )) %>% 
   mutate(FIPSTATE = case_when(
     PSTATABB == "FL" ~ "12",

@@ -28,7 +28,7 @@ library(moments)
 # Load CVI Data -----------------------------------------------------------
 
 southern_states <- c("FL", "GA", "AL", "MS", "LA", "AR", "TN", "NC", "SC", 
-                     "KY", "WV", "VA", "TX", "DC")
+                     "KY", "WV", "VA", "TX")
 
 columnlist <- c("fips_code",
                 "state", 

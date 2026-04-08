@@ -111,7 +111,7 @@ plot_distrib <- function(metric, county_df){
     geom_histogram() + 
     labs(caption = glue("Skewness: {skewness}\nKurtosis: {kurtosis}"))
   
-  return(plot)
+  return(list(plot, skewness))
 }
 
 plots <- map(metrics, plot_distrib, cvi_county)
@@ -119,16 +119,17 @@ names(plots) <- metrics
 
 plots
 
-skewed_vars <- c("rail_crossings", "below_poverty", "no_high_school_diploma", 
-                 "riverine_flooding_annualized_frequency", "population")
+# skewed_vars <- c("rail_crossings", "below_poverty", "no_high_school_diploma", 
+#                  "riverine_flooding_annualized_frequency", "population")
   
 # Log Adjust Variables ----------------------------------------------------
 
 cvi_county_log_adj <- cvi_county %>%
-  select(fips_county, all_of(skewed_vars)) %>% 
-  mutate(across(c(-fips_county), log))
+  select(fips_county, all_of(metrics)) %>% 
+  mutate(across(c(-fips_county), log))   # can maybe arbitrarily add 0.1
 
-plots_log <- map(skewed_vars, plot_distrib, cvi_county_log_adj)
+plots_log <- map(metrics, plot_distrib, cvi_county_log_adj)
+names(plots_log) <- metrics
 plots_log
 
 cvi_county_final <- left_join(
@@ -138,6 +139,29 @@ cvi_county_final <- left_join(
   suffix = c("", "_log")
 )
 
-write_rds(cvi_county_final, "Data/Processed/cvi_data_by_county.rds")
+
+# check whether original or log-transformed variable is better
+best_col <- c()
+for (metric in metrics){
+  orig_skew <- plots[metric][[1]][[2]]
+  log_skew <- plots_log[metric][[1]][[2]]
+  
+  if((abs(orig_skew) < abs(log_skew)) | (abs(orig_skew)<0.5)){
+    best_col <- best_col %>% append(metric)
+  }
+  else{
+    best_col <- best_col %>% append(str_c(metric, "log", sep = "_"))
+  }
+  print(c(metric, orig_skew, log_skew))
+}
+best_col
+
+#write_rds(cvi_county_final, "Data/Processed/cvi_data_by_county.rds")
 
 
+## DROP RAIL CROSSINGs
+
+# Visualization -----------------------------------------------------------
+
+ggplot(cvi_county_final) + 
+  geom_boxplot(aes)

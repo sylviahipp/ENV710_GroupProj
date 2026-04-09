@@ -11,6 +11,7 @@ library(tidycensus)
 library(janitor)
 library(glue)
 library(moments)
+library(cowplot)
 
 # Below poverty: percentile ranking
 
@@ -95,7 +96,7 @@ cvi_county <- cvi_data_pop %>%
 metrics <- cvi_county %>% select(-c(state:fips_county, county_name)) %>% names()
 
 # visualize distributions
-plot_distrib <- function(metric, county_df){
+plot_distrib <- function(metric, county_df, include_skew=TRUE){
   df <- county_df %>% 
     select(fips_county, all_of(metric))
   
@@ -105,9 +106,12 @@ plot_distrib <- function(metric, county_df){
   kurtosis <- kurtosis(metric_data %>% subset(.!=-Inf), na.rm = TRUE) 
   
   plot <- ggplot(df, aes(x = !!sym(metric))) + 
-    geom_histogram() + 
-    labs(caption = glue("Skewness: {skewness}\nKurtosis: {kurtosis}"))
+    geom_histogram(fill = "grey", color = "darkgrey") + 
+    theme_bw() 
   
+  if(include_skew){
+    plot <- plot + labs(caption = glue("Skewness: {skewness}\nKurtosis: {kurtosis}"))
+  }
   return(list(plot, skewness))
 }
 
@@ -157,10 +161,31 @@ for (metric in metrics){
 cvi_county_best_cols <- cvi_county_final %>% 
   select(state:county_name, all_of(best_col))
 
-write_rds(cvi_county_final, "Data/Processed/cvi_data_by_county.rds")
-write_rds(cvi_county_best_cols, "Data/Processed/cvi_data_by_county_best_cols.rds")
+#write_rds(cvi_county_final, "Data/Processed/cvi_data_by_county.rds")
+#write_rds(cvi_county_best_cols, "Data/Processed/cvi_data_by_county_best_cols.rds")
 
 # Visualization -----------------------------------------------------------
+
+# plot grid of metrics
+plots_best_cols <- map(best_col, plot_distrib, cvi_county_best_cols, FALSE)
+plots_best_cols <- lapply(plots_best_cols, function(x) x[[1]])  # extract just the plot
+
+title <- ggdraw() +
+  draw_label("Distribution of Response Variables and Population", 
+             fontface = 'bold', size = 14, hjust = 0.5)
+
+final_distributions <- plot_grid(
+  title, 
+  plot_grid(plotlist = plots_best_cols, nrow = 3), 
+  nrow = 2, rel_heights = c(0.1, 0.9)
+) + 
+  theme(
+    plot.background = element_rect(fill = "white", color = NA),
+    panel.background = element_rect(fill = "white", color = NA)
+  )
+  
+ggsave("Figures/Presentation/variable_distributions.png", final_distributions, 
+       width = 7, height = 5, scale = 1.15)
 
 # ggplot(cvi_county_final) + 
 #   geom_boxplot(aes)

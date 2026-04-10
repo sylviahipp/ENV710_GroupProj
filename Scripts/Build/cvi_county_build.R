@@ -187,5 +187,3 @@ final_distributions <- plot_grid(
 ggsave("Figures/Presentation/variable_distributions.png", final_distributions, 
        width = 7, height = 5, scale = 1.15)
 
-# ggplot(cvi_county_final) + 
-#   geom_boxplot(aes)

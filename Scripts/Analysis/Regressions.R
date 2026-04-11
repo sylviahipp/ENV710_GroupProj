@@ -3,6 +3,22 @@
 # March 18, 2026
 
 
+
+
+### Below is our process of identifying the strongest 
+### Binomial General Linear Model for our data set. 
+### By following the direction of improvement in AIC, we identify 
+### Current Adult Asthma, the log of Riverine Flooding Annualized Frequency
+### and the log of population demonstrate the best explanatory power.
+### Adding rate of no high school diploma and poverty rate only improved
+### AIC fractionally. 
+
+
+
+
+
+
+
 #-Setup & Packages------------- 
 
 librarylist <- c("openxlsx", "readxl",'ggplot2','moments', 'stats','here', 'tidyverse', 'nlme','naniar','DHARMa','gtsummary','broom')
@@ -110,9 +126,11 @@ min(level4AIC) # fractional improvement to add no_high_school_diploma
 
 
 print(CategoryGLM2514)
-summary(CategoryGLM2514)
 simulateResiduals(CategoryGLM2514) %>% plot()
 simulateResiduals(CategoryGLM251) %>% plot()
+summary(CategoryGLM2514)
+summary(CategoryGLM251)
+
 
 # 
 # 

@@ -32,10 +32,9 @@ data1 <- data %>%
 
 ## Model
 ```{r}
-CategoryGLM2514 <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log + 
-                         population_log + no_high_school_diploma,
-                       data = data1,
-                       family = "binomial")
+GLM <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log + population_log,
+                      data = data1,
+                      family = "binomial")
 ```
 
 
@@ -50,7 +49,6 @@ riverine_vector <- c(rep(round(mean(
   riverine_notinfinity$riverine_flooding_annualized_frequency_log),2), 30))
 population_vector <- c(rep(round(mean(cvi_egrid_join$population_log),2),30))
 asthma_vector <- c(rep(round(mean(cvi_egrid_join$current_adult_asthma),2),30))
-hs_vector <- c(rep(round(mean(cvi_egrid_join$no_high_school_diploma),2),30))
 ```
 
 # adult asthma visualization
@@ -63,10 +61,10 @@ length(asthma_sim)
 
 data_pred_asthma <- data.frame(asthma_sim, population_vector, riverine_vector, hs_vector)
 
-colnames(data_pred_asthma) <- c("current_adult_asthma","population_log", "riverine_flooding_annualized_frequency_log","no_high_school_diploma")
+colnames(data_pred_asthma) <- c("current_adult_asthma","population_log", "riverine_flooding_annualized_frequency_log")
 
 # Use the original model to predict outcomes.
-prediction_asthma <- predict(CategoryGLM2514, newdata = data_pred_asthma, type = "response",
+prediction_asthma <- predict(GLM, newdata = data_pred_asthma, type = "response",
                         se.fit = TRUE)
 # Pull out predictions.
 data_fig_asthma <- data.frame(data_pred_asthma, prediction_asthma$fit,prediction_asthma$se.fit)
@@ -96,10 +94,10 @@ length(pop_sim)
 
 data_pred_pop <- data.frame(asthma_vector, pop_sim, riverine_vector, hs_vector)
 
-colnames(data_pred_pop) <- c("current_adult_asthma","population_log", "riverine_flooding_annualized_frequency_log","no_high_school_diploma")
+colnames(data_pred_pop) <- c("current_adult_asthma","population_log", "riverine_flooding_annualized_frequency_log")
 
 # Use the original model to predict outcomes.
-prediction_population <- predict(CategoryGLM2514, newdata = data_pred_pop, type = "response",
+prediction_population <- predict(GLM, newdata = data_pred_pop, type = "response",
                         se.fit = TRUE)
 # Pull out predictions.
 data_fig_pop <- data.frame(data_pred_pop, prediction_population$fit,prediction_population$se.fit)
@@ -129,10 +127,10 @@ length(riverine_sim)
 
 data_pred_riverine <- data.frame(asthma_vector, population_vector, riverine_sim, hs_vector)
 
-colnames(data_pred_riverine) <- c("current_adult_asthma","population_log", "riverine_flooding_annualized_frequency_log","no_high_school_diploma")
+colnames(data_pred_riverine) <- c("current_adult_asthma","population_log", "riverine_flooding_annualized_frequency_log")
 
 # Use the original model to predict outcomes.
-prediction_riverine <- predict(CategoryGLM2514, newdata = data_pred_riverine, type = "response",
+prediction_riverine <- predict(GLM, newdata = data_pred_riverine, type = "response",
                         se.fit = TRUE)
 # Pull out predictions.
 data_fig_riverine <- data.frame(data_pred_riverine, prediction_riverine$fit,prediction_riverine$se.fit)
@@ -152,43 +150,8 @@ riverine_pred
 
 ```
 
-#simulate hs
-
 ```{r}
-# Simulate population
-summary(cvi_egrid_join$no_high_school_diploma)
-
-hs_sim <- seq(from = 0.025, to = 0.9, by = 0.03)
-length(hs_sim)
-
-data_pred_hs <- data.frame(asthma_vector, population_vector, riverine_vector, hs_sim)
-
-colnames(data_pred_hs) <- c("current_adult_asthma","population_log", "riverine_flooding_annualized_frequency_log","no_high_school_diploma")
-
-# Use the original model to predict outcomes.
-prediction_hs <- predict(CategoryGLM2514, newdata = data_pred_hs, type = "response",
-                        se.fit = TRUE)
-# Pull out predictions.
-data_fig_hs <- data.frame(data_pred_hs, prediction_hs$fit,prediction_hs$se.fit)
-
-colnames(data_fig_hs) <- c("asthma","population", "riverine","hs", "probability", "se")
-
-#plot
-hs_pred <- ggplot(data_fig_hs, aes(x = hs, y = probability)) +
-  geom_line() +
-  geom_ribbon(aes(ymin = probability - se,
-                  ymax = probability + se), alpha = 0.3) +
-  labs(x = "No High School Diploma", y = "Probability of Plant Presence")+
-  theme_bw()+
-  ggtitle("No HS Diploma Predictive Model")
-
-hs_pred
-
-```
-
-
-```{r}
-grid<- plot_grid(pop_pred,riverine_pred,hs_pred,asthma_pred)
+grid<- plot_grid(pop_pred,riverine_pred,asthma_pred)
 ```
 
 ```{r}

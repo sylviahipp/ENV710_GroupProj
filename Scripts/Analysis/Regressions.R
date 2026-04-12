@@ -3,84 +3,176 @@
 # March 18, 2026
 
 
+
+
+### Below is our process of identifying the strongest 
+### Binomial General Linear Model for our data set. 
+### By following the direction of improvement in AIC, we identify 
+### Current Adult Asthma, the log of Riverine Flooding Annualized Frequency
+### and the log of population demonstrate the best explanatory power.
+### Adding rate of no high school diploma and poverty rate only improved
+### AIC fractionally. 
+
+
+
+
+
+
+
 #-Setup & Packages------------- 
 
-librarylist <- c("openxlsx", "readxl",'ggplot2','moments', 'stats','here', 'tidyverse', 'nlme')
+librarylist <- c("openxlsx", "readxl",'ggplot2','moments', 'stats','here', 'tidyverse', 'nlme','naniar','DHARMa','gtsummary','broom')
 lapply(librarylist, require, character.only = T)
 here()
 data <- read.csv(here('Data','Processed','cvi_egrid_join.csv'))
 summary(data)
 
 data1 <- data %>% 
-  filter(!is.na(population),
-         Category!="Other plant")
+  filter(riverine_flooding_annualized_frequency_log != -Inf) %>% 
+  mutate(category_GLM = case_when(Category == "Contains FF" ~ 1,
+                                   Category == "Contains solar/wind" ~ 1,
+                                   Category == "Contains FF and solar/wind" ~ 1,
+                                   T ~ 0 )) #Plant exists = 1; No Plant = 0
 
-#-Regressions-----------------
-## Linear Regressions
-asthma_lm <- lm(current_adult_asthma ~ (Category + population), data =  data1)
-asthma_lm_interactions1 <- lm(current_adult_asthma ~ (Category*state) + population, data =  data1)
-asthma_lm_interactions2 <- lm(current_adult_asthma ~ (Category) + (population*state), data =  data1)
-asthma_lm_interactions3 <- lm(current_adult_asthma ~ (Category + population)*state, data =  data1)
-summary(asthma_lm)
-plot(asthma_lm)
-summary(asthma_lm_interactions1)
-df_asthma_lm_comparison <- (data.frame(AIC(asthma_lm), AIC(asthma_lm_interactions1), AIC(asthma_lm_interactions2), AIC(asthma_lm_interactions3)))
-df_asthma_lm_comparison
 
-rail_lm <- lm(rail_crossings ~ (Category + population), data =  data1)
-rail_lm_interaction1 <- lm(rail_crossings ~ (Category*state) + (population), data =  data1)
-rail_lm_interaction2 <- lm(rail_crossings ~ (Category) + (population*state), data =  data1)
-rail_lm_interaction3 <- lm(rail_crossings ~ (Category + population)*state, data =  data1)
-summary(rail_lm)
-plot(rail_lm)
-df_rail_lm_comparison <- data.frame(AIC(rail_lm), AIC(rail_lm_interaction1), AIC(rail_lm_interaction2), AIC(rail_lm_interaction3))
 
-poverty_lm <- lm(below_poverty ~ (Category + population), data =  data1)
-poverty_lm_interaction1 <- lm(below_poverty ~ (Category*state) + (population), data =  data1)
-poverty_lm_interaction2 <- lm(below_poverty ~ (Category) + (population*state), data =  data1)
-poverty_lm_interaction3 <- lm(below_poverty ~ (Category + population)*state, data =  data1)
-summary(poverty_lm)
-plot(poverty_lm)
-df_poverty_lm_comparison <- data.frame(AIC(poverty_lm), AIC(poverty_lm_interaction1), AIC(poverty_lm_interaction2), AIC(poverty_lm_interaction3))
+#-Logistic Regressions-------------
+CategoryGLM1 <- glm(category_GLM ~ population_log,
+                 data = data1,
+                 family = "binomial")
 
-no_hs_lm <- lm(no_high_school_diploma ~ (Category + population), data =  data1)
-no_hs_lm_interaction1 <- lm(no_high_school_diploma ~ (Category*state) + (population), data =  data1)
-no_hs_lm_interaction2 <- lm(no_high_school_diploma ~ (Category) + (population*state), data =  data1)
-no_hs_lm_interaction3 <- lm(no_high_school_diploma ~ (Category + population)*state, data =  data1)
-summary(no_hs_lm)
-plot(no_hs_lm)
-df_noHS_lm_comparison <- data.frame(AIC(no_hs_lm),AIC(no_hs_lm_interaction1),AIC(no_hs_lm_interaction2),AIC(no_hs_lm_interaction3))
+CategoryGLM2 <- glm(category_GLM ~ current_adult_asthma,
+                    data = data1,
+                    family = "binomial")
 
-flooding_lm <- lm(riverine_flooding_annualized_frequency ~ (Category + population), data =  data1)
-flooding_lm_interaction1 <- lm(riverine_flooding_annualized_frequency ~ (Category*state) + (population), data =  data1)
-flooding_lm_interaction2 <- lm(riverine_flooding_annualized_frequency ~ (Category) + (population*state), data =  data1)
-flooding_lm_interaction3 <- lm(riverine_flooding_annualized_frequency ~ (Category + population)*state, data =  data1)
-summary(flooding_lm)
-plot(flooding_lm)
-df_flooding_lm_comparison <- data.frame(AIC(flooding_lm),AIC(flooding_lm_interaction1),AIC(flooding_lm_interaction2),AIC(flooding_lm_interaction3))
+CategoryGLM3 <- glm(category_GLM ~ below_poverty,
+                    data = data1,
+                    family = "binomial")
 
-## Linear Mixed Effects Regressions
-asthmasthmasthma_lme <- lme(current_adult_asthma ~ Category + population, random =~1|state, data =  data1)
-summary(asthma_lme)
-plot(asthma_lme)
-qqnorm(asthma_lme)
+CategoryGLM4 <- glm(category_GLM ~ no_high_school_diploma,
+                    data = data1,
+                    family = "binomial")
 
-rail_lme <- lme(rail_crossings ~ Category + population, random =~1|state, data =  data1)
-summary(rail_lme)
-plot(rail_lme)
-qqnorm(rail_lme)
+CategoryGLM5 <- glm(category_GLM ~ riverine_flooding_annualized_frequency_log,
+                    data = data1,
+                    family = "binomial")
 
-poverty_lme <- lme(below_poverty ~ Category + population, random =~1|state, data =  data1)
-summary(poverty_lme)
-plot(poverty_lme)
-qqnorm(poverty_lme)
+level1AIC <- as.data.frame(rbind(AIC(CategoryGLM1),AIC(CategoryGLM2),AIC(CategoryGLM3),AIC(CategoryGLM4),AIC(CategoryGLM5)))
 
-diploma_lme <- lme(no_high_school_diploma ~ Category + population, random =~1|state, data =  data1)
-summary(diploma_lme)
-plot(diploma_lme)
-qqnorm(diploma_lme)
+# best performing model is GLM2 - using this to guide how
+# we add a layer of complexity
 
-flooding_lme <- lme(riverine_flooding_annualized_frequency ~ Category + population, random =~1|state, data =  data1)
-summary(flooding_lme)
-plot(flooding_lme)
-qqnorm(flooding_lme)
+CategoryGLM21 <- glm(category_GLM ~ current_adult_asthma+ population_log,
+                    data = data1,
+                    family = "binomial")
+
+CategoryGLM23 <- glm(category_GLM ~ current_adult_asthma + below_poverty,
+                    data = data1,
+                    family = "binomial")
+CategoryGLM24 <- glm(category_GLM ~ current_adult_asthma + no_high_school_diploma,
+                     data = data1,
+                     family = "binomial")
+CategoryGLM25 <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log,
+                     data = data1,
+                     family = "binomial")
+
+
+level2AIC <- as.data.frame(rbind(AIC(CategoryGLM21),
+                                 AIC(CategoryGLM23),
+                                 AIC(CategoryGLM24),
+                                 AIC(CategoryGLM25)))
+min(level2AIC) # GLM25 (current_adult_asthma + riverine_flooding_annualized_frequency_log) has best AIC 
+# using this to narrow choices
+
+# level 3 complexity
+CategoryGLM251 <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log + population_log,
+                      data = data1,
+                      family = "binomial")
+
+CategoryGLM253 <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log + below_poverty,
+                      data = data1,
+                      family = "binomial")
+
+CategoryGLM254 <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log + no_high_school_diploma,
+                      data = data1,
+                      family = "binomial")
+
+level3AIC <- as.data.frame(rbind(AIC(CategoryGLM251),
+                                 AIC(CategoryGLM253),
+                                 AIC(CategoryGLM254)))
+min(level3AIC) # an improvement to add population_log
+
+# level 4 complexity
+CategoryGLM2513 <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log + 
+                         population_log + below_poverty,
+                       data = data1,
+                       family = "binomial")
+CategoryGLM2514 <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log + 
+                         population_log + no_high_school_diploma,
+                       data = data1,
+                       family = "binomial")
+
+level4AIC <- as.data.frame(rbind(AIC(CategoryGLM2513),
+                                 AIC(CategoryGLM2514)))
+min(level4AIC) # fractional improvement to add no_high_school_diploma
+
+# test if all explanatory variables together improve model any further:
+# CategoryGLM25143 <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log + 
+#                          population_log + no_high_school_diploma + below_poverty,
+#                        data = data1,
+#                        family = "binomial")
+# level5AIC <- as.data.frame(rbind(AIC(CategoryGLM25143)))
+# level5AIC < min(level4AIC) # RETURNS FALSE
+
+
+print(CategoryGLM2514)
+simulateResiduals(CategoryGLM2514) %>% plot()
+simulateResiduals(CategoryGLM251) %>% plot()
+summary(CategoryGLM2514)
+summary(CategoryGLM251)
+
+
+# 
+# 
+# #-Linear Regressions-------------
+# asthma_lm <- lm(current_adult_asthma ~ (Category + population_log), data =  data)
+# summary(asthma_lm)
+# plot(asthma_lm)
+# 
+# poverty_lm <- lm(below_poverty ~ (Category + population_log), data =  data)
+# summary(poverty_lm)
+# plot(poverty_lm)
+# 
+# 
+# no_hs_lm <- lm(no_high_school_diploma ~ (Category + population_log), data =  data)
+# summary(no_hs_lm)
+# plot(no_hs_lm)
+# 
+# flooding_lm <- lm(riverine_flooding_annualized_frequency_log ~ (Category + population_log), data =  data)
+# summary(flooding_lm)
+# plot(flooding_lm)
+# 
+# 
+# 
+# #-Linear Mixed Effects Regressions---------
+# asthmasthmasthma_lme <- lme(current_adult_asthma ~ Category + population_log, random =~1|state, data =  data)
+# summary(asthma_lme)
+# plot(asthma_lme)
+# qqnorm(asthma_lme)
+# 
+# poverty_lme <- lme(below_poverty ~ Category + population_log, random =~1|state, data =  data)
+# summary(poverty_lme)
+# plot(poverty_lme)
+# qqnorm(poverty_lme)
+# 
+# diploma_lme <- lme(no_high_school_diploma ~ Category + population_log, random =~1|state, data =  data)
+# summary(diploma_lme)
+# plot(diploma_lme)
+# qqnorm(diploma_lme)
+# 
+# flooding_lme <- lme(riverine_flooding_annualized_frequency_log ~ Category + population_log, random =~1|state, data =  data)
+# summary(flooding_lme)
+# plot(flooding_lme)
+# qqnorm(flooding_lme)
+# 
+# cor.test(data$Category, data$population_log, data$riverine_flooding_annualized_frequency_log)

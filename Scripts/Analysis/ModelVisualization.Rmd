@@ -78,7 +78,7 @@ asthma_pred <- ggplot(data_fig_asthma, aes(x = asthma, y = probability)) +
   geom_line() +
   geom_ribbon(aes(ymin = probability - se,
                   ymax = probability + se), alpha = 0.3) +
-  labs(x = "Asthma", y = "Probability of plant")+
+  labs(x = "Asthma", y = "Probability of Plant Presence")+
   theme_bw()+
   ggtitle("Asthma Predictive Model")
 
@@ -111,7 +111,7 @@ pop_pred <- ggplot(data_fig_pop, aes(x = population, y = probability)) +
   geom_line() +
   geom_ribbon(aes(ymin = probability - se,
                   ymax = probability + se), alpha = 0.3) +
-  labs(x = "Population (log)", y = "Probability of plant")+
+  labs(x = "Population (log)", y = "Probability of Plant Presence")+
   theme_bw()+
   ggtitle("Population Predictive Model")
 
@@ -144,7 +144,7 @@ riverine_pred <- ggplot(data_fig_riverine, aes(x = riverine, y = probability)) +
   geom_line() +
   geom_ribbon(aes(ymin = probability - se,
                   ymax = probability + se), alpha = 0.3) +
-  labs(x = "Riverine Flooding (log)", y = "Probability of plant")+
+  labs(x = "Riverine Flooding (log)", y = "Probability of Plant Presence")+
   theme_bw()+
   ggtitle("Riverine Flooding Predictive Model")
 
@@ -178,9 +178,9 @@ hs_pred <- ggplot(data_fig_hs, aes(x = hs, y = probability)) +
   geom_line() +
   geom_ribbon(aes(ymin = probability - se,
                   ymax = probability + se), alpha = 0.3) +
-  labs(x = "No High School Diploma", y = "Probability of plant")+
+  labs(x = "No High School Diploma", y = "Probability of Plant Presence")+
   theme_bw()+
-  ggtitle("No High School Diploma Predictive Model")
+  ggtitle("No HS Diploma Predictive Model")
 
 hs_pred
 
@@ -188,6 +188,15 @@ hs_pred
 
 
 ```{r}
-plot_grid(pop_pred,riverine_pred,hs_pred,asthma_pred)
+grid<- plot_grid(pop_pred,riverine_pred,hs_pred,asthma_pred)
+```
+
+```{r}
+ggsave(grid, 
+       filename = "Scripts/Analysis/Figures/model_vis.jpg",
+       height = 15,
+       width = 30,
+       units = "cm")  
+
 ```
 

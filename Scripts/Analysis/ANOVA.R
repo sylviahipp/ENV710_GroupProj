@@ -2,6 +2,8 @@ library(tidyverse)
 library(here)
 
 cvi_egrid_join <- read.csv("Data/Processed/cvi_egrid_join.csv")
+riverine_notinfinity <- cvi_egrid_join %>% 
+  filter(is.finite(riverine_flooding_annualized_frequency_log))
 
 colnames(cvi_egrid_join)
 
@@ -30,9 +32,8 @@ TukeyHSD(hs_ANOVA)
 
 #riverine_flooding_annualized_frequency
 riverine_ANOVA <- aov(riverine_flooding_annualized_frequency_log ~ Category, 
-                      data = cvi_egrid_join)
+                      data = riverine_notinfinity)
 summary(riverine_ANOVA)
 TukeyHSD(riverine_ANOVA)
 
-sum(is.na(cvi_egrid_join$riverine_flooding_annualized_frequency_log))
 

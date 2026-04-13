@@ -19,7 +19,6 @@ pop_ANOVA <- aov(population_log ~ Category, data = cvi_egrid_join)
 summary(pop_ANOVA)
 TukeyHSD(pop_ANOVA)
 
-
 #poverty
 poverty_ANOVA <- aov(below_poverty ~ Category, data = cvi_egrid_join)
 summary(poverty_ANOVA)

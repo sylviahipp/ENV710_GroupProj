@@ -690,7 +690,7 @@ pop_pred
 ```
 
 #### Riverine visualization
-```{rflooding vis, echo=TRUE, message=FALSE, warning=FALSE}
+```{r flooding vis, echo=TRUE, message=FALSE, warning=FALSE}
 # Simulate riverine
 summary(riverine_notinfinity$riverine_flooding_annualized_frequency_log)
 

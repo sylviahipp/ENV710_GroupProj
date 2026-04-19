@@ -116,7 +116,8 @@ CategoryGLM2514 <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_a
 
 level4AIC <- as.data.frame(rbind(AIC(CategoryGLM2513),
                                  AIC(CategoryGLM2514)))
-min(level4AIC) # fractional improvement to add no_high_school_diploma
+min(level4AIC) # Technically a fractional improvement to add no_high_school_diploma 
+# but not enough to justify the complexity I think
 
 # test if all explanatory variables together improve model any further:
 # CategoryGLM25143 <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log + 
@@ -132,6 +133,24 @@ simulateResiduals(CategoryGLM2514) %>% plot()
 simulateResiduals(CategoryGLM251) %>% plot()
 summary(CategoryGLM2514)
 summary(CategoryGLM251)
+
+
+
+
+
+summary(lme(category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log + population_log,
+        random = ~1|state,
+    data = data1))
+
+summary(lm(category_GLM ~ current_adult_asthma  + riverine_flooding_annualized_frequency_log+ population_log,
+        data = data1))
+
+
+
+
+
+
+
 
 
 # 

@@ -691,7 +691,11 @@ CategoryGLM5 <- glm(category_GLM ~ riverine_flooding_annualized_frequency_log,
                     data = data1,
                     family = "binomial")
 
-level1AIC <- as.data.frame(rbind(AIC(CategoryGLM1),AIC(CategoryGLM2),AIC(CategoryGLM3),AIC(CategoryGLM4),AIC(CategoryGLM5)))
+level1AIC <- as.data.frame(rbind(AIC(CategoryGLM1),
+                                 AIC(CategoryGLM2),
+                                 AIC(CategoryGLM3),
+                                 AIC(CategoryGLM4),
+                                 AIC(CategoryGLM5)))
 
 # best performing model is GLM2 - using this to guide how
 # we add a layer of complexity
@@ -722,14 +726,11 @@ min(level2AIC) # GLM25 (current_adult_asthma + riverine_flooding_annualized_freq
 CategoryGLM251 <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log + population_log,
                       data = data1,
                       family = "binomial")
-
-summary(CategoryGLM251)
-
 CategoryGLM253 <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log + below_poverty,
                       data = data1,
                       family = "binomial")
-
-CategoryGLM254 <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log + no_high_school_diploma,
+CategoryGLM254 <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log 
+                      + no_high_school_diploma,
                       data = data1,
                       family = "binomial")
 
@@ -750,7 +751,8 @@ CategoryGLM2514 <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_a
 
 level4AIC <- as.data.frame(rbind(AIC(CategoryGLM2513),
                                  AIC(CategoryGLM2514)))
-min(level4AIC) # fractional improvement to add no_high_school_diploma
+min(level4AIC) # it is only fractional improvement to add no_high_school_diploma
+# We decide this is not sufficient improvement to warrant additional complexity
 
 # test if all explanatory variables together improve model any further:
 # CategoryGLM25143 <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log + 
@@ -761,57 +763,11 @@ min(level4AIC) # fractional improvement to add no_high_school_diploma
 # level5AIC < min(level4AIC) # RETURNS FALSE
 
 
-print(CategoryGLM2514)
-simulateResiduals(CategoryGLM2514) %>% plot()
-simulateResiduals(CategoryGLM251) %>% plot()
-summary(CategoryGLM2514)
 summary(CategoryGLM251)
 
+simulateResiduals(CategoryGLM251) %>% plot()
 
-# 
-# 
-# #-Linear Regressions-------------
-# asthma_lm <- lm(current_adult_asthma ~ (Category + population_log), data =  data)
-# summary(asthma_lm)
-# plot(asthma_lm)
-# 
-# poverty_lm <- lm(below_poverty ~ (Category + population_log), data =  data)
-# summary(poverty_lm)
-# plot(poverty_lm)
-# 
-# 
-# no_hs_lm <- lm(no_high_school_diploma ~ (Category + population_log), data =  data)
-# summary(no_hs_lm)
-# plot(no_hs_lm)
-# 
-# flooding_lm <- lm(riverine_flooding_annualized_frequency_log ~ (Category + population_log), data =  data)
-# summary(flooding_lm)
-# plot(flooding_lm)
-# 
-# 
-# 
-# #-Linear Mixed Effects Regressions---------
-# asthmasthmasthma_lme <- lme(current_adult_asthma ~ Category + population_log, random =~1|state, data =  data)
-# summary(asthma_lme)
-# plot(asthma_lme)
-# qqnorm(asthma_lme)
-# 
-# poverty_lme <- lme(below_poverty ~ Category + population_log, random =~1|state, data =  data)
-# summary(poverty_lme)
-# plot(poverty_lme)
-# qqnorm(poverty_lme)
-# 
-# diploma_lme <- lme(no_high_school_diploma ~ Category + population_log, random =~1|state, data =  data)
-# summary(diploma_lme)
-# plot(diploma_lme)
-# qqnorm(diploma_lme)
-# 
-# flooding_lme <- lme(riverine_flooding_annualized_frequency_log ~ Category + population_log, random =~1|state, data =  data)
-# summary(flooding_lme)
-# plot(flooding_lme)
-# qqnorm(flooding_lme)
-# 
-# cor.test(data$Category, data$population_log, data$riverine_flooding_annualized_frequency_log)
+# final model: category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log + population_log
 
 ```
 

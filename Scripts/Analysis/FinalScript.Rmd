@@ -398,7 +398,7 @@ cvi_boxplots
 
 ## ANOVA
 
-```{r}
+```{r ANOVA, echo=TRUE, message=FALSE, warning=FALSE}
 cvi_egrid_join <- cvi_egrid_join
 riverine_notinfinity <- cvi_egrid_join %>% 
   filter(is.finite(riverine_flooding_annualized_frequency_log))
@@ -493,7 +493,7 @@ TukeyHSD(riverine_ANOVA)
 
 ## Model
 
-```{r}
+```{r logistic regression, echo=TRUE, message=FALSE, warning=FALSE}
 data <- cvi_egrid_join
 
 data1 <- data %>% 
@@ -608,13 +608,11 @@ simulateResiduals(CategoryGLM251) %>% plot()
 
 ### Model visualization
 
-```{r}
+```{r visualize model, echo=TRUE, message=FALSE, warning=FALSE}
 GLM <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log + population_log,
                       data = data1,
                       family = "binomial")
-```
 
-```{r}
 #filter out riverine infinity
 riverine_notinfinity <- cvi_egrid_join %>% 
   filter(is.finite(riverine_flooding_annualized_frequency_log))
@@ -626,7 +624,7 @@ asthma_vector <- c(rep(round(mean(cvi_egrid_join$current_adult_asthma),2),30))
 ```
 
 #### adult asthma visualization
-```{r}
+```{r asthma vis, echo=TRUE, message=FALSE, warning=FALSE}
 summary(cvi_egrid_join$current_adult_asthma)
 
 # Simulate asthma
@@ -659,7 +657,7 @@ asthma_pred
 ```
 
 #### population visualization
-```{r}
+```{r population vis, echo=TRUE, message=FALSE, warning=FALSE}
 # Simulate population
 summary(cvi_egrid_join$population_log)
 
@@ -692,7 +690,7 @@ pop_pred
 ```
 
 #### Riverine visualization
-```{r}
+```{rflooding vis, echo=TRUE, message=FALSE, warning=FALSE}
 # Simulate riverine
 summary(riverine_notinfinity$riverine_flooding_annualized_frequency_log)
 

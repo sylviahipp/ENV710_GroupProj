@@ -89,6 +89,8 @@ CategoryGLM251 <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_an
                       data = data1,
                       family = "binomial")
 
+summary(CategoryGLM251)
+
 CategoryGLM253 <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log + below_poverty,
                       data = data1,
                       family = "binomial")

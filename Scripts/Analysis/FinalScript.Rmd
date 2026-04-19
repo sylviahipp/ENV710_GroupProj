@@ -1,0 +1,888 @@
+---
+title: "Power Plants and Quality of Life in Southeastern US: Final Script"
+author: "Maeve Gualtieri-Reed, Sylvia Hipp, Josh Salzberg"
+date: "2026-04-19"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+# Setup
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(here)
+library(tidycensus)
+library(janitor)
+library(glue)
+library(moments)
+library(cowplot)
+library(openxlsx)
+library(ggplot2)
+library(moments)
+library(stats)
+library(nlme)
+library(naniar)
+library (DHARMa)
+library(gtsummary)
+library(broom)
+library(sf)
+library(corrplot)
+```
+
+# Data Wrangling
+
+## CVI
+```{r}
+southern_states <- c("FL", "GA", "AL", "MS", "LA", "AR", "TN", "NC", "SC", 
+                     "KY", "WV", "VA", "TX")
+
+columnlist <- c("fips_code",
+                "state", 
+                "current_adult_asthma",
+                #"rail_crossings",
+                "below_poverty",
+                "no_high_school_diploma",
+                "riverine_flooding_annualized_frequency") 
+
+cvi_data <- read_excel(path=here('Data','Raw','cvi',"CVI_subset.xlsx"),
+                       skip = 0,
+                       sheet="Indicator Native Units",
+                       col_names=T) %>%
+  clean_names() %>% 
+  filter(state %in% southern_states) %>% 
+  select(columnlist)
+
+
+# Get population at the census tract level --------------------------------
+
+census_tract_pop <- get_acs(geography = "tract",
+                            state = southern_states, 
+                            variables = "B01003_001", 
+                            geometry = FALSE) %>% 
+  #mutate(county_name = str_match(NAME, ";\\s*([^;]+ County);\\s*([^;]+)")[,2]) %>% 
+  select("fips_code" = GEOID, "population" = estimate)
+
+county_pop <- get_acs(geography = "county",
+                      state = southern_states, 
+                      variables = "B01003_001", 
+                      geometry = FALSE) %>% 
+  select("fips_code" = GEOID, "county_name" = NAME, "population" = estimate)
+
+# Join population and clean CVI data --------------------------------------
+
+not_in_census <- cvi_data %>% anti_join(census_tract_pop)  # 5376
+not_in_cvi <- census_tract_pop %>% anti_join(cvi_data)     # 11068
+
+# ASSUMPTION: for tracts that do not have population, assign a population of 1 
+
+cvi_data_pop <- cvi_data %>% 
+  left_join(census_tract_pop, by = "fips_code") %>% 
+  mutate(population = replace_na(population, 1))
+  
+# cvi_data_pop %>% filter(population == 1) %>% group_by(state) %>% summarize(n())
+
+
+# Aggregate CVI Data to county level --------------------------------------
+
+cvi_county <- cvi_data_pop %>% 
+  mutate(fips_county = str_extract(fips_code,"^\\d{5}")) %>% 
+  group_by(state, fips_county) %>% 
+# summarize tract data to weighted average, weighted by population 
+  summarize(across(c("current_adult_asthma":"riverine_flooding_annualized_frequency"),
+                   ~sum(population*., na.rm = TRUE)/sum(population, na.rm = TRUE))) %>% 
+  ungroup() %>% 
+# add on county-level population data
+# exclude counties without population data in the census
+  inner_join(county_pop, by = c("fips_county" = "fips_code"))
+
+
+# Investigate Variable Distribution ---------------------------------------
+
+metrics <- cvi_county %>% select(-c(state:fips_county, county_name)) %>% names()
+
+# visualize distributions
+plot_distrib <- function(metric, county_df, include_skew=TRUE){
+  df <- county_df %>% 
+    select(fips_county, all_of(metric))
+  
+  metric_data <- df %>% select(all_of(metric)) %>% pull()
+  
+  skewness <- skewness(metric_data %>% subset(.!=-Inf), na.rm = TRUE)
+  kurtosis <- kurtosis(metric_data %>% subset(.!=-Inf), na.rm = TRUE) 
+  
+  plot <- ggplot(df, aes(x = !!sym(metric))) + 
+    geom_histogram(fill = "grey", color = "darkgrey") + 
+    theme_bw() 
+  
+  if(include_skew){
+    plot <- plot + labs(caption = glue("Skewness: {skewness}\nKurtosis: {kurtosis}"))
+  }
+  return(list(plot, skewness))
+}
+
+plots <- map(metrics, plot_distrib, cvi_county)
+names(plots) <- metrics
+
+plots
+
+# skewed_vars <- c("rail_crossings", "below_poverty", "no_high_school_diploma", 
+#                  "riverine_flooding_annualized_frequency", "population")
+  
+# Log Adjust Variables ----------------------------------------------------
+
+cvi_county_log_adj <- cvi_county %>%
+  select(fips_county, all_of(metrics)) %>% 
+  mutate(across(c(-fips_county), log))   # can maybe arbitrarily add 0.1
+
+plots_log <- map(metrics, plot_distrib, cvi_county_log_adj)
+names(plots_log) <- metrics
+plots_log
+
+cvi_county_final <- left_join(
+  cvi_county, 
+  cvi_county_log_adj, 
+  by = "fips_county", 
+  suffix = c("", "_log")
+) %>% 
+  relocate(county_name, .after = "fips_county")
+
+
+# check whether original or log-transformed variable is better
+best_col <- c()
+for (metric in metrics){
+  orig_skew <- plots[metric][[1]][[2]]
+  log_skew <- plots_log[metric][[1]][[2]]
+  
+  if((abs(orig_skew) < abs(log_skew)) | (abs(orig_skew)<0.5)){
+    best_col <- best_col %>% append(metric)
+  }
+  else{
+    best_col <- best_col %>% append(str_c(metric, "log", sep = "_"))
+  }
+  print(c(metric, orig_skew, log_skew))
+}
+#best_col
+
+cvi_county_best_cols <- cvi_county_final %>% 
+  select(state:county_name, all_of(best_col))
+
+#write_rds(cvi_county_final, "Data/Processed/cvi_data_by_county.rds")
+#write_rds(cvi_county_best_cols, "Data/Processed/cvi_data_by_county_best_cols.rds")
+
+# Visualization -----------------------------------------------------------
+
+# plot grid of metrics
+plots_best_cols <- map(best_col, plot_distrib, cvi_county_best_cols, FALSE)
+plots_best_cols <- lapply(plots_best_cols, function(x) x[[1]])  # extract just the plot
+
+title <- ggdraw() +
+  draw_label("Distribution of Response Variables and Population", 
+             fontface = 'bold', size = 14, hjust = 0.5)
+
+final_distributions <- plot_grid(
+  title, 
+  plot_grid(plotlist = plots_best_cols, nrow = 3), 
+  nrow = 2, rel_heights = c(0.1, 0.9)
+) + 
+  theme(
+    plot.background = element_rect(fill = "white", color = NA),
+    panel.background = element_rect(fill = "white", color = NA)
+  )
+  
+
+#ggsave("Figures/Presentation/variable_distributions.png", final_distributions, 
+       #width = 7, height = 5, scale = 1.15)
+
+```
+
+## eGRID
+
+```{r}
+plnt23_raw <- read_excel(here("Data/Raw/egrid/egrid2023_data_rev2.xlsx"), 
+                         sheet = "PLNT23", skip=1)
+
+glimpse(plnt23_raw)
+
+# Process data ------------------------------------------------------------
+
+# Filter plants based on: 
+# Southeastern states (plus Texas)
+# Plants with Capacity Factor > 1% and Nameplate Capacity > 1 MW
+# Exclude plants where county info is missing
+
+southern_states <- c("FL", "GA", "AL", "MS", "LA", "AR", "TN", "NC", "SC", 
+                     "KY", "WV", "VA", "TX")
+cf_limit <- 0.01
+npcap_limit <- 1
+
+plnt23 <- plnt23_raw %>% 
+  filter(PSTATABB %in% southern_states, 
+         NAMEPCAP >= npcap_limit, 
+         CAPFAC >= cf_limit, 
+         !is.na(FIPSCNTY))
+
+counties_count <- plnt23 %>% 
+  group_by(PSTATABB, FIPSCNTY, CNTYNAME, PLFUELCT) %>% 
+  count() %>% 
+  ungroup() %>% 
+  pivot_wider(id_cols = c("PSTATABB", "FIPSCNTY", "CNTYNAME"), 
+              names_from = "PLFUELCT", 
+              values_from = "n") 
+  
+counties_mw <- plnt23 %>% 
+  group_by(PSTATABB, FIPSCNTY, CNTYNAME, PLFUELCT) %>% 
+  summarize(capacity = sum(NAMEPCAP)) %>% 
+  ungroup() %>% 
+  pivot_wider(id_cols = c("PSTATABB", "FIPSCNTY", "CNTYNAME"), 
+              names_from = "PLFUELCT", 
+              values_from = "capacity") 
+
+counties_count$allFF <- rowSums(counties_count[c("GAS", "COAL", "OIL", "OFSL")],
+                                na.rm = TRUE)
+counties_count$windsolar <- rowSums(counties_count[c("WIND", "SOLAR")],
+                                    na.rm = TRUE)
+
+counties_cat <- counties_count %>% 
+  mutate(Category = case_when(
+    allFF > 0 & windsolar > 0 ~ "Contains FF and solar/wind ", 
+    allFF > 0 ~ "Contains FF",
+    windsolar > 0 ~ "Contains solar/wind",
+    allFF == 0 & windsolar ==0 ~"Other plant"
+  )) %>% 
+  mutate(FIPSTATE = case_when(
+    PSTATABB == "FL" ~ "12",
+    PSTATABB == "GA" ~ "13",
+    PSTATABB == "AL" ~ "01",
+    PSTATABB == "MS" ~ "28",
+    PSTATABB == "LA" ~ "22",
+    PSTATABB == "AR" ~ "05",
+    PSTATABB == "TN" ~ "47",
+    PSTATABB == "NC" ~ "37",
+    PSTATABB == "SC" ~ "45",
+    PSTATABB == "KY" ~ "21",
+    PSTATABB == "WV" ~ "54",
+    PSTATABB == "VA" ~ "51",
+    PSTATABB == "TX" ~ "48",
+    PSTATABB == "DC" ~ "11")) %>% 
+  mutate(FIPSCODE = paste0(FIPSTATE,FIPSCNTY)) %>% 
+  select(FIPSCODE,PSTATABB,CNTYNAME,Category)
+
+#write.csv(counties_cat, "Data/Processed/counties_category.csv", row.names = FALSE)
+
+
+
+```
+
+
+## Join
+
+```{r}
+CVI <- cvi_county_best_cols %>% 
+  rename(FIPSCODE = fips_county)
+
+colnames(CVI)
+
+county_cat <- counties_cat
+
+cvi_egrid_join <- left_join(CVI,county_cat,by = "FIPSCODE") %>% 
+  mutate(Category = replace_na(Category, "No plant")) %>% 
+  select("state","FIPSCODE","Category","population_log","current_adult_asthma",
+         "below_poverty","no_high_school_diploma",
+         "riverine_flooding_annualized_frequency_log") %>% 
+  filter(Category != "Other plant")
+
+cvi_egrid_join
+
+write.csv(cvi_egrid_join, "Data/Processed/cvi_egrid_join.csv", row.names = FALSE)
+
+```
+
+
+# Figures and Data Exploration
+
+## Boxplots
+
+```{r}
+
+#-Import Data---------------
+
+cvi_data <- read_excel(
+  path=here('Data','Raw','cvi',"CVI_subset.xlsx"),
+  skip = 0,
+  sheet="Indicator Native Units",
+  col_names=T) 
+
+#-SUBSET CVI DATA ----------
+southern_states <- c("FL", "GA", "AL", "MS", "LA", "AR", "TN", "NC", "SC", 
+                     "KY", "WV", "VA", "TX", "DC")
+
+columnlist <- c("current_adult_asthma",
+                "rail_crossings",
+                "below_poverty",
+                "no_high_school_diploma",
+                "riverine_flooding_annualized_frequency",
+                "fips_code",
+                "state")
+
+aggregatecvi <- cvi_data %>% 
+  janitor::clean_names() %>% 
+  filter(state %in% southern_states) %>% 
+  select(columnlist) %>% 
+  mutate(fips_county = str_extract(fips_code,"^\\d{5}")) %>% 
+  group_by(fips_county, state) %>%
+  summarize(across(c("current_adult_asthma":"riverine_flooding_annualized_frequency"),
+                   ~mean(.,na.rm=T)))
+
+#write.csv(aggregatecvi, file = "Data/Raw/cvi/aggregatecvi.csv")
+
+#-Join CVI & eGRID classification-----------
+
+counties_categories <- read.csv(here('Data','Processed','counties_category.csv'))
+
+cvi_county_join <- left_join(x = aggregatecvi, y=counties_cat, by = c("fips_county" = "FIPSCODE"))
+
+clean_joined <- cvi_county_join %>% 
+  select(!PSTATABB) %>% 
+  mutate(Category = replace_when(x = Category, is.na(Category) ~ "Neither" ))
+
+#write.csv(x = clean_joined, file = "Data/Processed/CleanedCVIandeGRID.csv")
+  
+
+#-BOXPLOTS------------------
+
+adultasthma <- ggplot(data = clean_joined, aes(x = Category, y = current_adult_asthma, fill = Category))+
+  geom_boxplot()+
+  labs(title = "Adult Asthma Rates in Southeastern Counties \nby Power Plant Category",
+       y = "Current Adult Asthma Rate")+
+  theme(axis.text.x=element_text(vjust=0.5,angle=45))
+
+railcrossings <- ggplot(data = clean_joined, aes(x = Category, y = rail_crossings, fill = Category))+
+  geom_boxplot()+
+  labs(title = "Count of Railroad Crossings in Southeastern Counties \nby Power Plant Category",
+       y = "Count of Railroad Crossings")+
+  theme(axis.text.x=element_text(vjust=0.5,angle=45))
+
+belowpoverty <- ggplot(data = clean_joined, aes(x = Category, y = below_poverty, fill = Category))+
+  geom_boxplot()+
+  labs(title = "Below Poverty Rate in Southeastern Counties \nby Power Plant Category",
+       y = "Rate of Residents Below Poverty")+
+  theme(axis.text.x=element_text(vjust=0.5,angle=45))
+
+nohsdiploma <- ggplot(data = clean_joined, aes(x = Category, y = no_high_school_diploma, fill = Category))+
+  geom_boxplot()+
+  labs(title = "Rate of Residents w/o High School Diploma in Southeastern Counties \nby Power Plant Category",
+       y = "Rate of No High School Diploma")+
+  theme(axis.text.x=element_text(vjust=0.5,angle=45))
+
+riverineflooding <- ggplot(data = clean_joined, aes(x = Category, y = riverine_flooding_annualized_frequency, fill = Category))+
+  geom_boxplot()+
+  labs(title = "Annualized Frequency of Riverine Flooding in Southeastern Counties \nby Power Plant Category",
+       y = "Riverine Flooding Frequency (Annualized)")+
+  theme(axis.text.x=element_text(vjust=0.5,angle=45))
+```
+
+## Plant Categories Map
+```{r}
+southern_fps <- c(
+  "12","13","01","28","22","05","47","37","45","21","54","51","48")
+
+SE_Counties <- st_read(here('Data/Raw/counties/cb_2018_us_county_20m.shp')) %>% 
+  filter(STATEFP %in% southern_fps) %>% 
+  mutate(FIPSCODE = as.character(GEOID))
+    
+counties_category <- counties_cat 
+
+
+map_countycat <- left_join(SE_Counties, counties_category, by = "FIPSCODE") %>% 
+  mutate(Category = replace_when(x = Category, is.na(Category) ~ "No plant" ))
+
+map_cat<-ggplot()+
+  geom_sf(data = map_countycat, aes(fill = Category))+
+  ggtitle("Southeast US Counties by Plant Type")+
+  scale_fill_manual(
+    values = c("Contains FF" = "darkred",
+               "Contains FF and solar/wind" = "darkgoldenrod1",
+               "Contains solar/wind" = "chartreuse4",
+               "No plant" = "gray",
+               "Other plant" = "cadetblue3"))+
+  labs(caption = "Counties in the Southeastern United States categorized by the presence of 
+  power plants within county boundaries according to 2023 eGRID data.")
+
+map_cat
+
+#ggsave(map_cat, 
+ #      filename = "Scripts/Analysis/Figures/map_categories.jpg",
+  #     height = 10,
+   #    width = 20,
+    #   units = "cm") 
+```
+
+## Correlation
+```{r}
+color_levels <- c("Contains FF" = "darkred", 
+                  "Contains FF and solar/wind" = "gold", 
+                  "Contains solar/wind" = "darkgreen", 
+                  "No Plant" = "darkgrey")
+
+
+# Load Data ---------------------------------------------------------------
+
+counties_category <- counties_cat %>% 
+  clean_names()  
+
+cvi_by_county <- cvi_county_best_cols
+
+cvi_egrid_df <- left_join(
+  cvi_by_county, 
+  counties_category %>% select(fipscode, category), 
+  by = c("fips_county" = "fipscode")
+) %>%
+  mutate(category = ifelse(is.na(category), "No Plant", category)) %>% 
+  filter(!str_detect(category, "Other")) %>% 
+  mutate(category = ordered(category))
+
+summary(cvi_egrid_df)
+
+# make table of distribution of counties across 
+
+  #filter(!str_detect(category, "Other"))
+
+
+# Correlation between predictor vars --------------------------------------
+
+predictor_vars <- c("Adult Asthma"="current_adult_asthma", 
+                    "Below Poverty"="below_poverty", 
+                    "No HS Diploma"="no_high_school_diploma", 
+                    "log(Riverine Flooding)"="riverine_flooding_annualized_frequency_log", 
+                    "log(Population)"="population_log")
+
+# check correlation
+corr_plot <- cvi_egrid_df %>% 
+  mutate(riverine_flooding_annualized_frequency_log = ifelse(riverine_flooding_annualized_frequency_log==-Inf, 
+                                                             -1000000, riverine_flooding_annualized_frequency_log)) %>% 
+  select(c(current_adult_asthma:population_log)) %>% 
+  rename(all_of(predictor_vars)) %>% 
+  cor() %>% 
+  corrplot(method = "number", type = "upper", bg="#c7c7c7", diag=FALSE, tl.srt = 45)
+
+
+
+# Scatter Plots -----------------------------------------------------------
+
+df_to_plot <- cvi_egrid_df %>% 
+  pivot_longer(cols = c(current_adult_asthma:population_log), 
+               names_to = "metric") %>% 
+  mutate(metric = case_when(metric == "below_poverty" ~ "Below Poverty (pct)", 
+                            metric == "current_adult_asthma" ~ "Adult Asthma Prevalence", 
+                            metric == "no_high_school_diploma" ~ "No High School Diploma (pct)", 
+                            metric == "riverine_flooding_annualized_frequency_log" ~ "log(Riverine Flooding Freq.)", 
+                            metric == "population_log" ~ "log(population)")) %>% 
+  filter(value != -Inf)
+
+cvi_boxplots <- ggplot(df_to_plot, aes(x = value, y = category, fill = category)) + 
+  geom_boxplot() +   
+  facet_wrap(vars(metric), 
+             scales = "free_x") + 
+  scale_fill_manual(values = color_levels) + 
+  theme_bw() + 
+  theme(legend.position = "None") + 
+  labs(x = NULL, y = NULL)
+
+ggsave("Figures/Presentation/cvi_boxplots.png", cvi_boxplots,
+       height = 4, width = 6, scale = 1.3)
+
+# Population Correlation --------------------------------------------------
+
+# get order of categories by descending population
+# pop_levels <- df_to %>%
+#   arrange(desc(population_log)) %>% 
+#   distinct(category) %>% 
+#   pull() %>% as.character()
+
+pop_boxplots <- cvi_egrid_df %>% 
+  ggplot(aes(x = category, y = population_log, fill = category)) + 
+    geom_boxplot() + 
+    scale_fill_manual(values = color_levels) + 
+    theme_bw() + 
+    theme(axis.text.x = element_text(vjust = 0.5, angle = 20)) + 
+    labs(x = NULL, 
+         y = "log(Population)", 
+         fill = NULL)
+
+ggsave("Figures/Presentation/population_boxplots.png", pop_boxplots)
+
+
+
+# Wrangle data for plotting -----------------------------------------------
+
+# df_to_plot <- cvi_egrid_df %>% 
+#   pivot_longer(cols = c(current_adult_asthma:riverine_flooding_annualized_frequency_log), 
+#                names_to = "metric") %>% 
+#   mutate(metric = case_when(metric == "below_poverty" ~ "Below Poverty (pct)", 
+#                             metric == "current_adult_asthma" ~ "Adult Asthma Prevalence", 
+#                             metric == "no_high_school_diploma" ~ "No High School Diploma (pct)", 
+#                             metric == "riverine_flooding_annualized_frequency_log" ~ "log(Riverine Flooding Freq.)"))
+# 
+# # aggregate means
+# means <- df_to_plot %>% 
+#   filter(value != -Inf) %>% 
+#   group_by(category, metric) %>% 
+#   summarize(across(c(value, population_log), mean)) %>% 
+#   ungroup()
+# 
+# # TODO: Maybe update scale? 
+# 
+# 
+# # Correlation Plots -------------------------------------------------------
+# 
+# corr_plots <- ggplot(mapping = aes(x = population_log, y = value)) + 
+#   geom_point(aes(color = category),           # show points for all counties
+#              data = df_to_plot,
+#              alpha = 0.4, size = 1) +   # exclude legend for small points
+#   geom_point(aes(fill = category),            # show points for averages
+#              data = means,
+#              size = 5, shape = 21, color = "black") + 
+#   facet_wrap(vars(metric), 
+#              scales = "free_y") +
+#   scale_color_manual(values = color_levels) +
+#   scale_fill_manual(values = color_levels) + 
+#   theme_bw() + 
+#   theme(legend.position = "bottom") + 
+#   labs(x = "log(Population)", 
+#        y = NULL, 
+#        fill = NULL) + 
+#   guides(color = "none")
+# 
+# ggsave("Figures/Presentation/scatter_plots.png", corr_plots, 
+#        height = 4, width = 6, scale = 1.3)
+
+```
+
+# Analysis
+
+## ANOVA
+
+```{r}
+cvi_egrid_join <- cvi_egrid_join
+riverine_notinfinity <- cvi_egrid_join %>% 
+  filter(is.finite(riverine_flooding_annualized_frequency_log))
+
+colnames(cvi_egrid_join)
+
+#ANOVA
+
+#asthma
+asthma_ANOVA <- aov(current_adult_asthma ~ Category, data = cvi_egrid_join)
+summary(asthma_ANOVA)
+TukeyHSD(asthma_ANOVA)
+
+#population
+pop_ANOVA <- aov(population_log ~ Category, data = cvi_egrid_join)
+summary(pop_ANOVA)
+TukeyHSD(pop_ANOVA)
+
+#poverty
+poverty_ANOVA <- aov(below_poverty ~ Category, data = cvi_egrid_join)
+summary(poverty_ANOVA)
+TukeyHSD(poverty_ANOVA)
+
+#hs diploma
+hs_ANOVA <- aov(no_high_school_diploma ~ Category, data = cvi_egrid_join)
+summary(hs_ANOVA)
+TukeyHSD(hs_ANOVA)
+
+#riverine_flooding_annualized_frequency
+riverine_ANOVA <- aov(riverine_flooding_annualized_frequency_log ~ Category, 
+                      data = riverine_notinfinity)
+summary(riverine_ANOVA)
+TukeyHSD(riverine_ANOVA)
+
+```
+
+
+## Model
+
+```{r}
+data <- cvi_egrid_join
+
+data1 <- data %>% 
+  filter(riverine_flooding_annualized_frequency_log != -Inf) %>% 
+  mutate(category_GLM = case_when(Category == "Contains FF" ~ 1,
+                                   Category == "Contains solar/wind" ~ 1,
+                                   Category == "Contains FF and solar/wind" ~ 1,
+                                   T ~ 0 )) #Plant exists = 1; No Plant = 0
+
+
+
+#-Logistic Regressions-------------
+CategoryGLM1 <- glm(category_GLM ~ population_log,
+                 data = data1,
+                 family = "binomial")
+
+CategoryGLM2 <- glm(category_GLM ~ current_adult_asthma,
+                    data = data1,
+                    family = "binomial")
+
+CategoryGLM3 <- glm(category_GLM ~ below_poverty,
+                    data = data1,
+                    family = "binomial")
+
+CategoryGLM4 <- glm(category_GLM ~ no_high_school_diploma,
+                    data = data1,
+                    family = "binomial")
+
+CategoryGLM5 <- glm(category_GLM ~ riverine_flooding_annualized_frequency_log,
+                    data = data1,
+                    family = "binomial")
+
+level1AIC <- as.data.frame(rbind(AIC(CategoryGLM1),AIC(CategoryGLM2),AIC(CategoryGLM3),AIC(CategoryGLM4),AIC(CategoryGLM5)))
+
+# best performing model is GLM2 - using this to guide how
+# we add a layer of complexity
+
+CategoryGLM21 <- glm(category_GLM ~ current_adult_asthma+ population_log,
+                    data = data1,
+                    family = "binomial")
+
+CategoryGLM23 <- glm(category_GLM ~ current_adult_asthma + below_poverty,
+                    data = data1,
+                    family = "binomial")
+CategoryGLM24 <- glm(category_GLM ~ current_adult_asthma + no_high_school_diploma,
+                     data = data1,
+                     family = "binomial")
+CategoryGLM25 <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log,
+                     data = data1,
+                     family = "binomial")
+
+
+level2AIC <- as.data.frame(rbind(AIC(CategoryGLM21),
+                                 AIC(CategoryGLM23),
+                                 AIC(CategoryGLM24),
+                                 AIC(CategoryGLM25)))
+min(level2AIC) # GLM25 (current_adult_asthma + riverine_flooding_annualized_frequency_log) has best AIC 
+# using this to narrow choices
+
+# level 3 complexity
+CategoryGLM251 <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log + population_log,
+                      data = data1,
+                      family = "binomial")
+
+summary(CategoryGLM251)
+
+CategoryGLM253 <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log + below_poverty,
+                      data = data1,
+                      family = "binomial")
+
+CategoryGLM254 <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log + no_high_school_diploma,
+                      data = data1,
+                      family = "binomial")
+
+level3AIC <- as.data.frame(rbind(AIC(CategoryGLM251),
+                                 AIC(CategoryGLM253),
+                                 AIC(CategoryGLM254)))
+min(level3AIC) # an improvement to add population_log
+
+# level 4 complexity
+CategoryGLM2513 <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log + 
+                         population_log + below_poverty,
+                       data = data1,
+                       family = "binomial")
+CategoryGLM2514 <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log + 
+                         population_log + no_high_school_diploma,
+                       data = data1,
+                       family = "binomial")
+
+level4AIC <- as.data.frame(rbind(AIC(CategoryGLM2513),
+                                 AIC(CategoryGLM2514)))
+min(level4AIC) # fractional improvement to add no_high_school_diploma
+
+# test if all explanatory variables together improve model any further:
+# CategoryGLM25143 <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log + 
+#                          population_log + no_high_school_diploma + below_poverty,
+#                        data = data1,
+#                        family = "binomial")
+# level5AIC <- as.data.frame(rbind(AIC(CategoryGLM25143)))
+# level5AIC < min(level4AIC) # RETURNS FALSE
+
+
+print(CategoryGLM2514)
+simulateResiduals(CategoryGLM2514) %>% plot()
+simulateResiduals(CategoryGLM251) %>% plot()
+summary(CategoryGLM2514)
+summary(CategoryGLM251)
+
+
+# 
+# 
+# #-Linear Regressions-------------
+# asthma_lm <- lm(current_adult_asthma ~ (Category + population_log), data =  data)
+# summary(asthma_lm)
+# plot(asthma_lm)
+# 
+# poverty_lm <- lm(below_poverty ~ (Category + population_log), data =  data)
+# summary(poverty_lm)
+# plot(poverty_lm)
+# 
+# 
+# no_hs_lm <- lm(no_high_school_diploma ~ (Category + population_log), data =  data)
+# summary(no_hs_lm)
+# plot(no_hs_lm)
+# 
+# flooding_lm <- lm(riverine_flooding_annualized_frequency_log ~ (Category + population_log), data =  data)
+# summary(flooding_lm)
+# plot(flooding_lm)
+# 
+# 
+# 
+# #-Linear Mixed Effects Regressions---------
+# asthmasthmasthma_lme <- lme(current_adult_asthma ~ Category + population_log, random =~1|state, data =  data)
+# summary(asthma_lme)
+# plot(asthma_lme)
+# qqnorm(asthma_lme)
+# 
+# poverty_lme <- lme(below_poverty ~ Category + population_log, random =~1|state, data =  data)
+# summary(poverty_lme)
+# plot(poverty_lme)
+# qqnorm(poverty_lme)
+# 
+# diploma_lme <- lme(no_high_school_diploma ~ Category + population_log, random =~1|state, data =  data)
+# summary(diploma_lme)
+# plot(diploma_lme)
+# qqnorm(diploma_lme)
+# 
+# flooding_lme <- lme(riverine_flooding_annualized_frequency_log ~ Category + population_log, random =~1|state, data =  data)
+# summary(flooding_lme)
+# plot(flooding_lme)
+# qqnorm(flooding_lme)
+# 
+# cor.test(data$Category, data$population_log, data$riverine_flooding_annualized_frequency_log)
+
+```
+
+### Model visualization
+
+```{r}
+GLM <- glm(category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log + population_log,
+                      data = data1,
+                      family = "binomial")
+```
+
+```{r}
+#filter out riverine infinity
+riverine_notinfinity <- cvi_egrid_join %>% 
+  filter(is.finite(riverine_flooding_annualized_frequency_log))
+
+riverine_vector <- c(rep(round(mean(
+  riverine_notinfinity$riverine_flooding_annualized_frequency_log),2), 30))
+population_vector <- c(rep(round(mean(cvi_egrid_join$population_log),2),30))
+asthma_vector <- c(rep(round(mean(cvi_egrid_join$current_adult_asthma),2),30))
+```
+
+#### adult asthma visualization
+```{r}
+summary(cvi_egrid_join$current_adult_asthma)
+
+# Simulate asthma
+asthma_sim <- seq(from = 7, to = 14.25, by = 0.25)
+length(asthma_sim)
+
+data_pred_asthma <- data.frame(asthma_sim, population_vector, riverine_vector, hs_vector)
+
+colnames(data_pred_asthma) <- c("current_adult_asthma","population_log", "riverine_flooding_annualized_frequency_log")
+
+# Use the original model to predict outcomes.
+prediction_asthma <- predict(GLM, newdata = data_pred_asthma, type = "response",
+                        se.fit = TRUE)
+# Pull out predictions.
+data_fig_asthma <- data.frame(data_pred_asthma, prediction_asthma$fit,prediction_asthma$se.fit)
+
+colnames(data_fig_asthma) <- c("asthma","population", "riverine","hs", "probability", "se")
+
+#plot
+asthma_pred <- ggplot(data_fig_asthma, aes(x = asthma, y = probability)) +
+  geom_line() +
+  geom_ribbon(aes(ymin = probability - se,
+                  ymax = probability + se), alpha = 0.3) +
+  labs(x = "Asthma", y = "Probability of Plant Presence")+
+  theme_bw()+
+  ggtitle("Asthma Predictive Model")
+
+asthma_pred
+
+```
+
+#### population visualization
+```{r}
+# Simulate population
+summary(cvi_egrid_join$population_log)
+
+pop_sim <- seq(from = 4, to = 18.5, by = 0.5)
+length(pop_sim)
+
+data_pred_pop <- data.frame(asthma_vector, pop_sim, riverine_vector, hs_vector)
+
+colnames(data_pred_pop) <- c("current_adult_asthma","population_log", "riverine_flooding_annualized_frequency_log")
+
+# Use the original model to predict outcomes.
+prediction_population <- predict(GLM, newdata = data_pred_pop, type = "response",
+                        se.fit = TRUE)
+# Pull out predictions.
+data_fig_pop <- data.frame(data_pred_pop, prediction_population$fit,prediction_population$se.fit)
+
+colnames(data_fig_pop) <- c("asthma","population", "riverine","hs", "probability", "se")
+
+#plot
+pop_pred <- ggplot(data_fig_pop, aes(x = population, y = probability)) +
+  geom_line() +
+  geom_ribbon(aes(ymin = probability - se,
+                  ymax = probability + se), alpha = 0.3) +
+  labs(x = "Population (log)", y = "Probability of Plant Presence")+
+  theme_bw()+
+  ggtitle("Population Predictive Model")
+
+pop_pred
+
+```
+
+#### Riverine visualization
+```{r}
+# Simulate riverine
+summary(riverine_notinfinity$riverine_flooding_annualized_frequency_log)
+
+riverine_sim <- seq(from = -4, to = 3.25, by = 0.25)
+length(riverine_sim)
+
+data_pred_riverine <- data.frame(asthma_vector, population_vector, riverine_sim, hs_vector)
+
+colnames(data_pred_riverine) <- c("current_adult_asthma","population_log", "riverine_flooding_annualized_frequency_log")
+
+# Use the original model to predict outcomes.
+prediction_riverine <- predict(GLM, newdata = data_pred_riverine, type = "response",
+                        se.fit = TRUE)
+# Pull out predictions.
+data_fig_riverine <- data.frame(data_pred_riverine, prediction_riverine$fit,prediction_riverine$se.fit)
+
+colnames(data_fig_riverine) <- c("asthma","population", "riverine","hs", "probability", "se")
+
+#plot
+riverine_pred <- ggplot(data_fig_riverine, aes(x = riverine, y = probability)) +
+  geom_line() +
+  geom_ribbon(aes(ymin = probability - se,
+                  ymax = probability + se), alpha = 0.3) +
+  labs(x = "Riverine Flooding (log)", y = "Probability of Plant Presence")+
+  theme_bw()+
+  ggtitle("Riverine Flooding Predictive Model")
+
+riverine_pred
+
+grid<- plot_grid(pop_pred,riverine_pred,asthma_pred)
+
+ggsave(grid, 
+       filename = "Scripts/Analysis/Figures/model_vis.jpg",
+       height = 15,
+       width = 30,
+       units = "cm")  
+
+```
+

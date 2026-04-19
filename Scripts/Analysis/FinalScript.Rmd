@@ -568,6 +568,61 @@ cvi_egrid_join <- cvi_egrid_join
 riverine_notinfinity <- cvi_egrid_join %>% 
   filter(is.finite(riverine_flooding_annualized_frequency_log))
 
+unique(cvi_egrid_join$Category)
+
+windsolar <-
+  cvi_egrid_join %>% 
+  filter(Category == "Contains solar/wind")
+
+solarwindff  <-
+  cvi_egrid_join %>% 
+  filter(Category == "Contains FF and solar/wind ")
+
+ff <-
+  cvi_egrid_join %>% 
+  filter(Category == "Contains FF")
+
+noplant<-
+  cvi_egrid_join %>% 
+  filter(Category == "No plant")
+
+noplantflood <- riverine_notinfinity %>% 
+  filter(Category == "No plant")
+
+windsolarflood <- riverine_notinfinity %>% 
+  filter(Category == "Contains solar/wind")
+
+windsolarflood_summary <- data.frame(
+  mean = sapply(windsolarflood[sapply(windsolarflood, is.numeric)], mean, na.rm = TRUE),
+  sd   = sapply(windsolarflood[sapply(windsolarflood, is.numeric)], sd, na.rm = TRUE)
+)
+
+noplantflood_summary <- data.frame(
+  mean = sapply(noplantflood[sapply(noplantflood, is.numeric)], mean, na.rm = TRUE),
+  sd   = sapply(noplantflood[sapply(noplantflood, is.numeric)], sd, na.rm = TRUE)
+)
+
+windsolar_summary <- data.frame(
+  mean = sapply(windsolar[sapply(windsolar, is.numeric)], mean, na.rm = TRUE),
+  sd   = sapply(windsolar[sapply(windsolar, is.numeric)], sd, na.rm = TRUE)
+)
+
+windsolarff_summary <- data.frame(
+  mean = sapply(solarwindff[sapply(solarwindff, is.numeric)], mean, na.rm = TRUE),
+  sd   = sapply(solarwindff[sapply(solarwindff, is.numeric)], sd, na.rm = TRUE)
+)
+
+
+ff_summary <- data.frame(
+  mean = sapply(ff[sapply(ff, is.numeric)], mean, na.rm = TRUE),
+  sd   = sapply(ff[sapply(ff, is.numeric)], sd, na.rm = TRUE)
+)
+
+noplant_summary <- data.frame(
+  mean = sapply(noplant[sapply(noplant, is.numeric)], mean, na.rm = TRUE),
+  sd   = sapply(noplant[sapply(noplant, is.numeric)], sd, na.rm = TRUE)
+)
+
 colnames(cvi_egrid_join)
 
 #ANOVA

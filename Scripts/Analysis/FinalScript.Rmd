@@ -602,6 +602,13 @@ summary(CategoryGLM251)
 
 simulateResiduals(CategoryGLM251) %>% plot()
 
+res <- simulateResiduals(CategoryGLM251)
+
+jpeg("Scripts/Analysis/Figures/residuals.jpg",
+     height = 15, width = 30, units = "cm", res = 300)
+plot(res)
+dev.off()
+
 # final model: category_GLM ~ current_adult_asthma + riverine_flooding_annualized_frequency_log + population_log
 
 ```
@@ -718,6 +725,7 @@ riverine_pred <- ggplot(data_fig_riverine, aes(x = riverine, y = probability)) +
 riverine_pred
 
 grid<- plot_grid(pop_pred,riverine_pred,asthma_pred)
+grid
 
 ggsave(grid, 
        filename = "Scripts/Analysis/Figures/model_vis.jpg",
